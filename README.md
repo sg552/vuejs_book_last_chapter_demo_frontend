@@ -1,6 +1,6 @@
-# queen_town_h5
+# 新疆商城-思路乐购
 
-> 皇后镇h5项目
+> 思路乐购h5项目
 
 开发环境
 
@@ -46,5 +46,5 @@ vue: 2.2.6
 7. 打包代码
   $ npm run build
 
-8. Capistrano（自动化部署） 访问地址：queentownh5.siwei.tech
+8. Capistrano（自动化部署） 访问地址：
   $ bundle exec cap deploy
