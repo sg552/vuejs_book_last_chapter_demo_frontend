@@ -8,7 +8,7 @@
         <div class="phone">
           <input id="mobile_phone" v-model="mobile_phone"  type="number" name="mobile_user_phone" placeholder="请输入手机号" style="border: 0; background-color: white; font-size: 15px; color: #3B3B3B; outline: none;"/>
         </div>
-          <button :disabled="this.$store.getters.get_button_disabled" @click="huo_qu" class="yan_zheng">{{this.$store.state.countdown.button_title}}</button>
+          <button :disabled="this.$store.getters.get_button_disabled" @click="" class="yan_zheng">{{this.$store.state.countdown.button_title}}</button>
       </div>
 
       <div style="background-color: white; border-bottom: 2px solid #E8E8E8; line-height: 36px; position: relative;">
@@ -18,7 +18,7 @@
         </div>
       </div>
 
-      <div @click="" class="login_button">
+      <div @click="login" class="login_button">
         登录
       </div>
 
@@ -42,7 +42,8 @@ export default {
     }
   },
   methods: {
-    huo_qu () {
+    login () {
+      go('/shops/index', this.$router)
     },
   }
 }

@@ -13,9 +13,9 @@ Vue.http.options.emulateJSON = true;
 Vue.use(VuePreview)
 
 const configs = {
-    api: 'http://queentown.wenyc.cn/interface/'
+    //api: 'http://queentown.wenyc.cn/interface/'
 //  api: 'http://api.dingxinzhiye.com/interface/'
-//  api: 'http://localhost:3000/interface/'
+  api: 'http://localhost:3000/interface/'
 }
 
 Vue.use(vueConfig, configs)
