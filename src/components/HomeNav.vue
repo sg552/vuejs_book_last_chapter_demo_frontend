@@ -50,18 +50,6 @@
                             <span>领券</span>
                         </a>
                     </li>
-                    <li class="nav_item">
-                        <a href="#" class="nav_item_link">
-                            <img src="../assets/images/nav8.png" alt="">
-                            <span>物流查询</span>
-                        </a>
-                    </li>
-                    <li class="nav_item">
-                        <a href="#" class="nav_item_link">
-                            <img src="../assets/images/nav9.png" alt="">
-                            <span>我的关注</span>
-                        </a>
-                    </li>
                 </ul>
             </nav>
 	</div>
