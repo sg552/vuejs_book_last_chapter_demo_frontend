@@ -4,13 +4,13 @@
     <section class="product_box">
       <div class="product_top">
         <a href="#" class="product_left">
+          <span class="divider" style="height: 4px;"></span>
           <div>促销活动</div>
-          <span class="divider" style="height: 2px;"></span>
-          <PromotionActivity></PromotionActivity>
         </a>
       </div>
     </section>
     </main>
+    <PromotionActivity></PromotionActivity>
 	</div>
 </template>
 <script>
