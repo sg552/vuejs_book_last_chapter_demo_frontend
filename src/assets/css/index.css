@@ -7,7 +7,6 @@ body {
     max-width: 640px;
     margin: 0 auto;
     position: relative;
-    height: 1000px;
 }
 
 .m_header {
@@ -84,7 +83,6 @@ body {
     width: 100%;
     overflow: hidden;
     position: relative;
-    margin-top: 52px;
 }
 
 .m_banner ul:first-child {
@@ -137,7 +135,7 @@ body {
 
 .m_nav {
     max-width: 100%;
-    height: 150px;
+    height: 80px;
     background-color: #fff;
 }
 
@@ -177,7 +175,6 @@ body {
 /*商品区*/
 
 .m_product {
-    margin: 0 5px;
 }
 
 
@@ -198,8 +195,8 @@ body {
 }
 
 .product_left div{
-  font-size: 14px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 28px;
   color: #f35e06;
   font-weight: 500;
   background-color: #fff;

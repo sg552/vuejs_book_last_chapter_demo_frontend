@@ -1,10 +1,12 @@
 <template>
   <div id="app">
     <router-view></router-view>
+    <NavBottomView></NavBottomView>
   </div>
 </template>
 
 <script>
+import NavBottomView from './components/NavBottom.vue';
 import store from './vuex/store'
 export default {
   store,
@@ -42,6 +44,9 @@ export default {
         document.title = "登录"
       }
     }
+  },
+  components:{
+    NavBottomView
   }
 }
 </script>
@@ -49,6 +54,8 @@ export default {
 <style lang="scss">
 @import "./styles/px2rem.scss";
 @import "./styles/variable.scss";
+@import './assets/css/index.css';
+@import './assets/css/base.css';
 
 .background {
   background-color: $background-color;
@@ -106,6 +113,7 @@ export default {
 .divider {
   height: 5px;
   display: block;
+  background-color: #f3f3f3;
 }
 
 .queding{
