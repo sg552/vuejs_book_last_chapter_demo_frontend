@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/views/login'
 import Index from '@/views/shops/index'
+import GoodsDetails from '@/views/shops/goods_details'
+import Dingdanzhifu from '@/views/shops/dingdanzhifu'
 
 Vue.use(Router)
 
@@ -17,6 +19,16 @@ export default new Router({
       path: '/shops/index',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/shops/goods_details',
+      name: 'GoodsDetails',
+      component: GoodsDetails
+    },
+    {
+      path: '/shops/dingdanzhifu',
+      name: 'Dingdanzhifu',
+      component: Dingdanzhifu
     },
   ]
 })

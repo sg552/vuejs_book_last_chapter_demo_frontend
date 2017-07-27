@@ -1,12 +1,11 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <NavBottomView></NavBottomView>
+    <lg-preview></lg-preview>
   </div>
 </template>
 
 <script>
-import NavBottomView from './components/NavBottom.vue';
 import store from './vuex/store'
 export default {
   store,
@@ -46,7 +45,6 @@ export default {
     }
   },
   components:{
-    NavBottomView
   }
 }
 </script>

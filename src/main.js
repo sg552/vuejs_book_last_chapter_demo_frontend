@@ -6,11 +6,13 @@ import router from './router'
 import VueResource from 'vue-resource'
 import vueConfig from './vue-config'
 import VuePreview from 'vue-preview'
+import vuePicturePreview from 'vue-picture-preview'
 
 Vue.config.productionTip = false
 Vue.use(VueResource)
 Vue.http.options.emulateJSON = true;
 Vue.use(VuePreview)
+Vue.use(vuePicturePreview)
 
 const configs = {
     //api: 'http://queentown.wenyc.cn/interface/'

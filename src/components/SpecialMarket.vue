@@ -1,13 +1,13 @@
 <template>
   <div>
-    <div class="fu_li_zhuan_qu" >
-      <img src="../assets/images/nav0.png" class="logo_image"/>
+    <div @click="show_goods_details" class="fu_li_zhuan_qu" >
+      <img :src="image_url" class="logo_image"/>
       <div class="content" >
         <div class="title">
-          新疆特色哈密瓜
+          {{name}}
         </div>
         <div class="logo_and_shop_name">
-          <span> 又香又甜</span>
+          <span> {{description}}</span>
         </div>
       </div>
     </div>
@@ -15,22 +15,32 @@
   </div>
 </template>
 <script>
+import { go } from '../libs/router'
+
     export default{
         data(){
             return {
-                homeDatas : [],
-                mainDatas:[]
             }
+        },
+        props: {
+          id: Number,
+          name: String,
+          description: String,
+          image_url: String,
         },
         mounted(){
         },
         methods:{
+         show_goods_details () {
+           console.info(this.id)
+           go("/shops/goods_details?good_id=" + this.id, this.$router)
+         },
         },
         components:{
         },
     }
 </script>
-<style>
+<style scoped>
     img[lazy=error] {
     background: url('../assets/images/err.png');
   }
@@ -69,18 +79,23 @@
   height: 40px;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  line-height: 24px;
+  line-height: 20px;
   -webkit-line-clamp: 2;
 }
 
 .fu_li_zhuan_qu .logo_and_shop_name {
-  height: 21px;
+  height: 34px;
+  margin-top: 5px;
 }
 
 .fu_li_zhuan_qu .logo_and_shop_name span {
   font-size: 13px;
-  line-height: 23px;
+  line-height: 13px;
   color: #919191;
   vertical-align: top;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 </style>
