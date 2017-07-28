@@ -9,7 +9,7 @@ set :repository, "./dist"
 set :scm, :none
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
 set :deploy_via, :copy
-server = "123.57.235.33"
+server = "112.126.91.145"
 
 role :web, server
 role :app, server                          # This may be the same as your `Web` server
