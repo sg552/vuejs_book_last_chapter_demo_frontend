@@ -11,18 +11,18 @@
         <div style="margin-top: 45px">
           <div class="extra_cost">
             <span style="float: left; margin-left: 15px;"> 收货地址:</span>
-            <input v-model="mobile_user_address"  type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none;"></input>
+            <input v-model="mobile_user_address"  type="text" name="cost" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201" style="border: 0; background-color: white;
+            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
           </div>
           <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 33px;"> 收货人:</span>
-            <input v-model="mobile_user_name" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none;"></input>
+            <span style="float: left; margin-left: 31px;"> 收货人:</span>
+            <input v-model="mobile_user_name" type="text" name="cost" placeholder="例如: 张三" style="border: 0; background-color: white;
+            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
           </div>
           <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 51px;"> 电话:</span>
-            <input v-model="mobile_user_phone" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none;"></input>
+            <span style="float: left; margin-left: 48px;"> 电话:</span>
+            <input v-model="mobile_user_phone" type="text" name="cost" placeholder="例如: 18588888888" style="border: 0; background-color: white;
+            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
           </div>
         </div>
       </section>
@@ -32,16 +32,16 @@
       <section class="product_info clearfix">
         <div>
           <div class="fu_li_zhuan_qu" >
-            <img src="http://siweitech.b0.upaiyun.com/image/silulegou/D2CtBk3myFGjdCIm.jpg" class="logo_image"/>
+            <img :src="good_images[0]" class="logo_image"/>
             <div class="content" >
               <div class="title">
-                {{good.name}}哈密瓜
+                {{good.name}}
               </div>
               <div class="logo_and_shop_name">
                 <div class="product_pric">
                   <span>￥</span>
-                  <span class="rel_price">12.0{{good.price}}</span>
-                  <span> x1</span>
+                  <span class="rel_price">{{good.price}}</span>
+                  <span> &nbsp x {{buy_count}}</span>
                 </div>
               </div>
             </div>
@@ -52,9 +52,9 @@
       <section>
         <span class="divider" style="height: 15px;"></span>
         <div class="extra_cost" style=" ">
-          <span style="float: left; margin-left: 15px;"> 卖家留言</span>
-          <input v-model="advise" id="extra_charge" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
-          font-size: 15px; color: #48484b; outline: none;"></input>
+          <span style="float: left; margin-left: 15px;"> 卖家留言:</span>
+          <input v-model="guest_remarks" id="extra_charge" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
+          font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
         </div>
       </section>
 
@@ -63,14 +63,14 @@
         <div class="extra_cost" style=" ">
           <span style="float: left; margin-left: 15px;"> 应付金额:</span>
           <div class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-            font-size: 20px; color: #F23434; outline: none;"> ￥120 </div>
+          font-size: 20px; color: #F23434; outline: none; text-align: right; padding-right: 20px;"> ￥{{total_cost}}</div>
         </div>
       </section>
       </main>
 
       <span class="divider"></span>
 
-      <div style="height: 80px;  display: flex; padding: 0 3%; background-color: #fff;" @click="change_pay_type('wei_xin')">
+      <div style="height: 80px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
         <div style="flex: 1; display: flex;">
           <div style="width:60px; height: 60px; margin-top: 10px;">
             <img src="../../assets/微信icon@3x.png" />
@@ -85,7 +85,7 @@
       </div>
 
       <div class="shop_layout-scroll-absolute" style="">
-        <div class="queding" @click="">
+        <div class="queding" @click="buy">
           立即支付
         </div>
       </div>
@@ -99,12 +99,12 @@
             return {
                 good_images: [],
                 good: "",
-                buy_count: 1,
+                buy_count: this.$route.query.buy_count,
                 good_id: this.$route.query.good_id,
                 mobile_user_address: '',
                 mobile_user_name: '',
                 mobile_user_phone: '',
-                advise: '',
+                guest_remarks: '',
                 is_use_wechat: false
             }
         },
@@ -119,6 +119,11 @@
            },(error) => {
              console.error(error)
            });
+        },
+        computed:  {
+            total_cost () {
+              return this.good.price * this.buy_count
+            }
         },
         methods:{
             plus () {
@@ -135,8 +140,48 @@
               } else {
                 this.is_use_wechat = false
               }
-            }
-        }
+            },
+            buy (){
+              this.$http.post(this.$configs.api + 'goods/buy',
+              {
+                good_id: this.good_id,
+                buy_count: this.buy_count,
+                total_cost: this.total_cost,
+                guest_remarks: this.guest_remarks,
+                mobile_user_address: this.mobile_user_address,
+                mobile_user_name: this.mobile_user_name,
+                mobile_user_phone: this.mobile_user_phone
+              }).then((response) => {
+                console.info("============点击了立即支付===")
+                console.info(response.body)
+                /*
+                let that = this
+                switch (this.pay_type) {
+                  case 'wei_xin': {
+                    //调起支付
+                    if (this.$route.query.client && this.$route.query.client === 'ios') {
+                      //this.$router.push({name: 'no_pay'})
+                      //return
+                      this.setupWebViewJavascriptBridge(function(bridge) {
+                        let url = 'http://api.shangyunyijia.com/interface/payments/information?' + 'order_id=' + that.order.order_id + '&fee=' + that.order.amount + '&order_sn=' + that.order.order_number + '&trade_type=APP'
+                        bridge.callHandler('runNativePay', url, function(response) {})
+                      })
+                    } else {
+                      //window.location.href="http://h5.shangyunyijia.com/run_native_pay"
+                      console.log('****android  开始微信支付 *******')
+                      console.info('------------总价为====' + (that.order.amount))
+                      android.startWeixinPay('http://api.shangyunyijia.com/interface/payments/information?' + 'order_id=' + that.order.order_id + '&fee=' + that.order.amount + '&order_sn=' + that.order.order_number + '&trade_type=APP')
+                    }
+                    break;
+                  }
+                  default: break;
+                }
+                */
+              }, (error) => {
+                console.error(error)
+              });
+            },
+          },
     }
 </script>
 
@@ -219,5 +264,8 @@
   @include px2rem(line-height, 53px);
   font-size: 18px;
   line-height: 40px;
+}
+.extra_cost span {
+  font-size: 15px;
 }
 </style>
