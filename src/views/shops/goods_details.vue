@@ -9,7 +9,7 @@
       <section class="banner_box">
         <ul class="banner_child_box">
           <li class="banner_item">
-            <img  v-for="image in good_images" :src="image" alt="" v-preview="image" class="banner_pic">
+            <img  v-for="image in good_images" :src="image" alt="" class="banner_pic">
           </li>
         </ul>
 

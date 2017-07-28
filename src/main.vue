@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <router-view></router-view>
-    <lg-preview></lg-preview>
   </div>
 </template>
 
