@@ -5,7 +5,7 @@
         <a onclick="window.history.go(-1)" class="icon_back"></a>
         <h3 class="cartname">商品详情</h3>
       </header>
-      <div class="tast_list_bd" style="padding-top: 15px;">
+      <div class="tast_list_bd" style="padding-top: 44px;">
         <main class="detail_box">
         <section class="banner_box">
           <ul class="banner_child_box">
@@ -53,22 +53,23 @@
         </main>
       </div>
 
-      <footer class="cart_d_footer">
-        <div class="m">
-          <ul class="m_box">
-            <li class="m_item">
-              <a href="" class="m_item_link">
-                <em class="m_item_pic three"></em>
-                <span class="m_item_name">购物车</span>
-              </a>
-            </li>
-          </ul>
-          <div class="btn_box clearfix" >
-            <a href="#" class="buy_now">加入购物车</a>
-            <a @click="zhifu" class="buybuy">立即购买</a>
-          </div>
+    <footer class="cart_d_footer">
+      <div class="m">
+        <ul class="m_box">
+          <li class="m_item">
+            <a href="" class="m_item_link">
+              <em class="m_item_pic three"></em>
+              <span class="m_item_name">购物车</span>
+            </a>
+          </li>
+        </ul>
+        <div class="btn_box clearfix" >
+          <a href="#" class="buy_now">加入购物车</a>
+          <a @click="zhifu" class="buybuy">立即购买</a>
         </div>
-      </footer>
+      </div>
+    </footer>
+
     </div>
   </div>
 </template>
@@ -114,7 +115,7 @@ import { go } from '../../libs/router'
 <style scoped>
 @import '../../assets/css/detail.css';
 .background {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 </style>
