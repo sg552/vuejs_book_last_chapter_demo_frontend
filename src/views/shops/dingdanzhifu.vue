@@ -151,32 +151,63 @@
                 mobile_user_address: this.mobile_user_address,
                 mobile_user_name: this.mobile_user_name,
                 mobile_user_phone: this.mobile_user_phone
+                //customer_id: this.customer_id
               }).then((response) => {
                 console.info("============点击了立即支付===")
-                console.info(response.body)
-                /*
-                let that = this
-                switch (this.pay_type) {
-                  case 'wei_xin': {
-                    //调起支付
-                    if (this.$route.query.client && this.$route.query.client === 'ios') {
-                      //this.$router.push({name: 'no_pay'})
-                      //return
-                      this.setupWebViewJavascriptBridge(function(bridge) {
-                        let url = 'http://api.shangyunyijia.com/interface/payments/information?' + 'order_id=' + that.order.order_id + '&fee=' + that.order.amount + '&order_sn=' + that.order.order_number + '&trade_type=APP'
-                        bridge.callHandler('runNativePay', url, function(response) {})
-                      })
-                    } else {
-                      //window.location.href="http://h5.shangyunyijia.com/run_native_pay"
-                      console.log('****android  开始微信支付 *******')
-                      console.info('------------总价为====' + (that.order.amount))
-                      android.startWeixinPay('http://api.shangyunyijia.com/interface/payments/information?' + 'order_id=' + that.order.order_id + '&fee=' + that.order.amount + '&order_sn=' + that.order.order_number + '&trade_type=APP')
-                    }
-                    break;
-                  }
-                  default: break;
+                console.info(response.body.order_number)
+                let order_number =  response.body.order_number
+                this.purchase (order_number);
+              }, (error) => {
+                console.error(error)
+              });
+            },
+            purchase (order_number) {
+              //this.onBridgeReady();
+              //调起微信支付界面
+              if (typeof WeixinJSBridge == "undefined"){
+                if( document.addEventListener ){
+                  document.addEventListener('WeixinJSBridgeReady', this.onBridgeReady, false);
+                }else if (document.attachEvent){
+                  document.attachEvent('WeixinJSBridgeReady', this.onBridgeReady);
+                  document.attachEvent('onWeixinJSBridgeReady', this.onBridgeReady);
                 }
-                */
+              }else{
+                this.onBridgeReady(order_number);
+              }
+            },
+            onBridgeReady (order_number) {
+              this.wait_response = true
+              this.$http.post('api/interface/payments/user_pay',
+              {
+                open_id: this.$store.state.userInfo.open_id,
+                total_cost: this.total_cost,
+                order_number: order_number
+              }).then((response) => {
+                this.wait_response = false
+                WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', {
+                  "appId": response.data.appId,
+                  "timeStamp": response.data.timeStamp,
+                  "nonceStr": response.data.nonceStr,
+                  "package": response.data.package,
+                  "signType": response.data.signType,
+                  "paySign":  response.data.paySign
+                },
+                function(res){
+                  alert(res.err_msg)
+                  alert(res.err_desc)
+                  if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+                    // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                    this.wait_response = false
+                    // go to success page
+                    go('/shops/paysuccess?order_id=' + order_number, this.$router)
+                  } else {
+                    this.wait_response = false
+                    // 显示取消支付或者失败
+                    go('/shops/payfail?order_id=' + order_number, this.$router)
+                  }
+                }
+                );
               }, (error) => {
                 console.error(error)
               });
