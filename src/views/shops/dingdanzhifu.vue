@@ -94,6 +94,7 @@
   </div>
 </template>
 <script>
+   import { go } from '../../libs/router'
    export default{
         data(){
             return {
@@ -183,28 +184,35 @@
                 total_cost: this.total_cost,
                 order_number: order_number
               }).then((response) => {
-                alert(response)
+                alert(response.data.appId + "  " +
+                  response.data.timeStamp + "  " +
+                  response.data.nonceStr + "  " +
+                  response.data.package + "  " +
+                  response.data.signType + "  " +
+                  response.data.paySign + "  "
+                )
+
                 WeixinJSBridge.invoke(
-                'getBrandWCPayRequest', {
-                  "appId": response.data.appId,
-                  "timeStamp": response.data.timeStamp,
-                  "nonceStr": response.data.nonceStr,
-                  "package": response.data.package,
-                  "signType": response.data.signType,
-                  "paySign":  response.data.paySign
-                },
-                function(res){
-                  alert(res.err_msg)
-                  alert(res.err_desc)
-                  if(res.err_msg == "get_brand_wcpay_request：ok" ) {
-                    // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-                    go('/shops/paysuccess?order_id=' + order_number, this.$router)
-                  } else {
-                    this.wait_response = false
-                    // 显示取消支付或者失败
-                    go('/shops/payfail?order_id=' + order_number, this.$router)
-                  }
-                }
+                    'getBrandWCPayRequest', {
+                        "appId": response.data.appId,
+                        "timeStamp": response.data.timeStamp,
+                        "nonceStr": response.data.nonceStr,
+                        "package": response.data.package,
+                        "signType": response.data.signType,
+                        "paySign":  response.data.paySign
+                    },
+                    function(res){
+                        alert(res.err_msg)
+                        alert(res.err_desc)
+                        if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+                        // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
+                          // go to success page
+                          go('/shops/paysuccess?order_id=' + order_number, this.$router)
+                        } else {
+                          // 显示取消支付或者失败
+                          go('/shops/payfail?order_id=' + order_number, this.$router)
+                        }
+                    }
                 );
               }, (error) => {
                 console.error(error)
