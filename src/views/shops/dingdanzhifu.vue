@@ -162,6 +162,7 @@
               });
             },
             purchase (order_number) {
+              alert(order_number)
               //this.onBridgeReady();
               //调起微信支付界面
               if (typeof WeixinJSBridge == "undefined"){
@@ -176,14 +177,13 @@
               }
             },
             onBridgeReady (order_number) {
-              this.wait_response = true
               this.$http.post('api/interface/payments/user_pay',
               {
                 open_id: this.$store.state.userInfo.open_id,
                 total_cost: this.total_cost,
                 order_number: order_number
               }).then((response) => {
-                this.wait_response = false
+                alert(response)
                 WeixinJSBridge.invoke(
                 'getBrandWCPayRequest', {
                   "appId": response.data.appId,
@@ -198,8 +198,6 @@
                   alert(res.err_desc)
                   if(res.err_msg == "get_brand_wcpay_request：ok" ) {
                     // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
-                    this.wait_response = false
-                    // go to success page
                     go('/shops/paysuccess?order_id=' + order_number, this.$router)
                   } else {
                     this.wait_response = false
@@ -210,6 +208,7 @@
                 );
               }, (error) => {
                 console.error(error)
+                alert(error)
               });
             },
           },
