@@ -14,6 +14,11 @@ export default new Router({
   routes: [
     {
       path: '/',
+      name: 'Home',
+      component: Index
+    },
+    {
+      path: '/login',
       name: 'Login',
       component: Login
     },
@@ -42,5 +47,9 @@ export default new Router({
       name: 'PayFail',
       component: PayFail
     },
+    { path: '/wait_to_shouquan',
+      name: 'wait_to_shouquan',
+      component: require('../views/wait_to_shouquan.vue')
+    }
   ]
 })
