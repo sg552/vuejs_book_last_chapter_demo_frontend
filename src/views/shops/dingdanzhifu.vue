@@ -178,7 +178,7 @@
               }
             },
             onBridgeReady (order_number) {
-              this.$http.post('api/interface/payments/user_pay',
+              this.$http.post(this.$configs.api + 'payments/user_pay',
               {
                 open_id: this.$store.state.userInfo.open_id,
                 total_cost: this.total_cost,
