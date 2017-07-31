@@ -11,9 +11,9 @@ import {
 } from '../mutation_types'
 
 const state = {
-  id: '', //用户id
-  open_id: '', // 用户open_id
-  role: ''
+  id: undefined, //用户id
+  open_id: undefined, // 用户open_id
+  role: undefined
 }
 
 const mutations = {
@@ -47,9 +47,9 @@ const getters = {
     console.info('进入到了getter中了')
     let localStorage = window.localStorage
     let user_info
-    if (localStorage.getItem('BASEINFO')) {
+    if (localStorage.getItem('SLLG_BASEINFO')) {
       console.info('有数据')
-      user_info = JSON.parse(localStorage.getItem('BASEINFO'))
+      user_info = JSON.parse(localStorage.getItem('SLLG_BASEINFO'))
     } else {
       console.info('没有数据')
     }

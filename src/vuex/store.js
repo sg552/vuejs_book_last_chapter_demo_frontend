@@ -10,6 +10,10 @@ Vue.use(Vuex)
 const debug = process.env.NODE_ENV !== 'production'
 
 export default new Vuex.Store({
+  state: {
+    web_share: 'http://ptbweb.siwei.me',
+    h5_share: 'http://ptbh5.siwei.me/?#'
+  },
   modules: {
     userInfo,
     tabbar,

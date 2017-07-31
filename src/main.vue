@@ -6,42 +6,38 @@
 
 <script>
 import store from './vuex/store'
+import { SET_BASEINFO, GET_BASEINFO } from './vuex/mutation_types'
 export default {
   store,
   name: 'app',
-  mounted() {
-    this.change_title(this.$route.path)
-    this.$store.dispatch('SET_BASEINFO')
+  data () {
+    return {
+      user_info: {
+        open_id: this.$route.query.open_id
+      }
+    }
+  },
+  mounted () {
+    console.log('main.vue created')
+    //store.dispatch(SET_BASEINFO, {open_id: 'opFELv6YkJkMaH-xFkokTWCs5AlQ'})
+    console.info(this.$route.name)
+    if (this.user_info.open_id) {
+      store.dispatch(SET_BASEINFO, this.user_info)
+    } else {
+      store.dispatch(SET_BASEINFO)
+      if (store.state.userInfo.open_id === undefined) {
+        console.info('用户id和open_id不存在 === 跳转到授权等待页面')
+        this.$router.push({name: 'wait_to_shouquan'})
+      } else {
+        console.info('已经有了BASEINFO')
+      }
+    }
   },
   watch: {
     '$route' (val) {
-      this.change_title(val.path)
     }
   },
   methods: {
-    change_title(route){
-      if (route.indexOf("repaire_staffs") != -1){
-        document.title = "维修人员"
-      } else if(route.indexOf("buyers") != -1){
-        document.title = "采购员"
-      } else if(route.indexOf("chief_cooks") != -1){
-        document.title = "提单"
-      } else if(route.indexOf("logistics_manager") != -1){
-        document.title = "分配维修人员"
-      } else if(route.indexOf("staffs") != -1){
-        document.title = "维修人员"
-      } else if(route.indexOf("room_managers") != -1){
-        document.title = "客房经理"
-      } else if(route.indexOf("room_waiters") != -1){
-        document.title = "客房服务员"
-      } else if(route.indexOf("repaire") != -1){
-        document.title = "报修"
-      } else if(route.indexOf("choose_entrance") != -1){
-        document.title = "选择入口"
-      } else {
-        document.title = "登录"
-      }
-    }
   },
   components:{
   }
