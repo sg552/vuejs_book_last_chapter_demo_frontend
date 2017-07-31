@@ -156,7 +156,7 @@
                 console.info("============点击了立即支付===")
                 console.info(response.body.order_number)
                 let order_number =  response.body.order_number
-                this.purchase (order_number);
+                this.purchase(order_number)
               }, (error) => {
                 console.error(error)
               });
