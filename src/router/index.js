@@ -7,6 +7,9 @@ import GoodsDetails from '@/views/shops/goods_details'
 import Dingdanzhifu from '@/views/shops/dingdanzhifu'
 import PaySuccess from '@/views/shops/paysuccess'
 import PayFail from '@/views/shops/payfail'
+import Cart from '@/components/Cart'
+import Mine from '@/components/Mine'
+import MineOrder from '@/components/MineOrder'
 
 Vue.use(Router)
 
@@ -21,6 +24,18 @@ export default new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    { path: '/cart',
+      name: 'Cart',
+      component: Cart
+    },
+    { path: '/mine',
+      name: 'Mine',
+      component: Mine
+    },
+    { path: '/mine_order',
+      name: 'MineOrder',
+      component: MineOrder
     },
     {
       path: '/shops/index',
