@@ -194,17 +194,19 @@
                         "paySign":  response.data.paySign
                     },
                     function(res){
-                        alert(res.err_msg)
-                        alert(res.err_desc)
-                        if(res.err_msg == "get_brand_wcpay_request：ok" ) {
+                        alert("成功信息" + res.err_msg)
+                        alert("失败信息" + res.err_desc)
+                        if(res.err_msg == "get_brand_wcpay_request:ok" ) {
                         // 使用以上方式判断前端返回,微信团队郑重提示：res.err_msg将在用户支付成功后返回    ok，但并不保证它绝对可靠。
                           // go to success page
                           alert("支付成功")
-                          go('/shops/paysuccess?order_id=' + order_number, this.$router)
+                          //go('/shops/paysuccess?order_id=' + order_number, this.$router)
+                          this.$router.push({ path: '/shops/paysuccess?order_id=' + order_number });
                         } else {
                           // 显示取消支付或者失败
                           alert("支付失败")
-                          go('/shops/payfail?order_id=' + order_number, this.$router)
+                          //go('/shops/payfail?order_id=' + order_number, this.$router)
+                          this.$router.push({ path: '/shops/payfail?order_id=' + order_number });
                         }
                     }
                 );
