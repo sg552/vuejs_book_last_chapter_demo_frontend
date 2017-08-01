@@ -126,4 +126,11 @@ export default {
   clear:both;
   height: 48px;
 }
+
+.full_height {
+  height: 100%;
+  width: 100%;
+}
+
+
 </style>

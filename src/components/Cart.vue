@@ -25,6 +25,7 @@
     <p v-show="!products.length"><i>Please add some products to cart.</i></p>
     <ul>
       <li v-for="p in products">
+        <img :src="p.image"/>
         {{ p.title }} - {{ p.price | currency }} x {{ p.quantity }}
       </li>
     </ul>

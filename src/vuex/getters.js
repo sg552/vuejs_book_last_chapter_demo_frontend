@@ -4,6 +4,7 @@ export const cartProducts = state => {
     return {
       title: product.title,
       price: product.price,
+      image: product.image,
       quantity
     }
   })
