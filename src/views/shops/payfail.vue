@@ -9,31 +9,34 @@
         <div class="word" style='color: #797979; font-size: 14px; margin-top: 8px;'>请您重新在商城购买下单</div>
       </div>
 
-    <div style="margin-top: 50px; position: relative;font-size: 14px; color: #797979;">
-      <div class="order_message">
-        <span class="title"> 订单号: </span> <span class="detail">{{order.order_number}}</span>
+      <div style="margin-top: 50px; position: relative;font-size: 14px; color: #797979;">
+        <div class="order_message">
+          <span class="title"> 订单号: </span> <span class="detail">{{order_id}}</span>
+        </div>
+        <div class="order_message">
+          <span class="title">总价:</span> <span  class="detail"> ￥{{order.total_cost}} </span>
+        </div>
+        <div class="order_message">
+          <span class="title">收货人: </span> <span class="detail">{{order.receiver_name}}</span>
+        </div>
+        <div class="order_message">
+          <span class="title"> 收货地址: </span> <span  class="detail">{{order.receiver_address}}</span>
+        </div>
+        <div class="order_message">
+          <span class="title"> 收货电话: </span> <span  class="detail">{{order.receiver_phone}}</span>
+        </div>
       </div>
-      <div class="order_message">
-        <span class="title">收货人: </span> <span class="detail">{{order.mobile_user_name}}</span>
-      </div>
-      <div class="order_message">
-        <span class="title">总价:</span> <span  class="detail"> ￥{{order.collect}} </span>
-      </div>
-      <div class="order_message">
-        <span class="title"> 收货地址: </span> <span  class="detail">{{order.mobile_user_address}}</span>
-      </div>
-    </div>
 
       <div style="margin-top: 20%;">
-          <router-link :to="{name: 'shops' }" tag="div" >
-            <img src="http://siweitech.b0.upaiyun.com//image/400/failurebutton@3x.png" style="width: 76%; height: 50px;"/>
-          </router-link>
+        <img src="http://siweitech.b0.upaiyun.com//image/400/failurebutton@3x.png" @click="go_shops" style="width: 76%; height: 50px;"/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import { go } from '../../libs/router'
+
 export default {
   data () {
     return {
@@ -52,6 +55,9 @@ export default {
     });
   },
   methods: {
+    go_shops () {
+      go("/shops/index", this.$router)
+    }
   },
   components: {
   }

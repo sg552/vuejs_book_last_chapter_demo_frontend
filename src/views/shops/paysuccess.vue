@@ -27,16 +27,16 @@
       </div>
     </div>
 
-      <div style="margin-top: 25%;">
-        <img src="http://siweitech.b0.upaiyun.com//image/398/WechatIMG4.png" @click="go_my_order" style="width: 37%;
-        height: 33px;
-        float: left;
-        margin-left: 39px;"/>
-        <img src="http://siweitech.b0.upaiyun.com//image/397/btn_success@2x.png" @click="go_shops" style="width: 37%;
-        height: 35px;
-        float: right;
-        margin-right: 39px;"/>
-      </div>
+    <div style="margin-top: 25%;">
+      <img src="http://siweitech.b0.upaiyun.com//image/398/WechatIMG4.png" @click="go_my_order" style="width: 37%;
+      height: 33px;
+      float: left;
+      margin-left: 39px;"/>
+      <img src="http://siweitech.b0.upaiyun.com//image/397/btn_success@2x.png" @click="go_shops" style="width: 37%;
+      height: 35px;
+      float: right;
+      margin-right: 39px;"/>
+    </div>
 
     </div>
   </div>
