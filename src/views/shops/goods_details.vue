@@ -57,14 +57,14 @@
       <div class="m">
         <ul class="m_box">
           <li class="m_item">
-            <a href="" class="m_item_link">
+            <a @click="toCart" class="m_item_link">
               <em class="m_item_pic three"></em>
               <span class="m_item_name">购物车</span>
             </a>
           </li>
         </ul>
         <div class="btn_box clearfix" >
-          <a href="#" class="buy_now">加入购物车</a>
+          <a @click="addToCart" class="buy_now">加入购物车</a>
           <a @click="zhifu" class="buybuy">立即购买</a>
         </div>
       </div>
@@ -97,6 +97,20 @@ import { go } from '../../libs/router'
            });
         },
         methods:{
+            addToCart () {
+              console.info('加入购物车')
+              let goods = {
+                id: this.good_id,
+                title: this.good.name,
+                quantity: this.buy_count,
+                price: this.good.price,
+                image: this.good_images[0]
+              }
+              this.$store.dispatch('addToCart', goods)
+            },
+            toCart () {
+              go("/shopping_car", this.$router)
+            },
             plus () {
               this.buy_count = this.buy_count + 1
             },

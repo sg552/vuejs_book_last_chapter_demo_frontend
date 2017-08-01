@@ -1,11 +1,7 @@
 <template>
   <div class="full_height">
     <div class="background">
-      <h1>Shopping Cart Example</h1>
-      <hr>
-      <h2>Products</h2>
-      <product-list></product-list>
-      <hr>
+      <h1>Shopping Cart</h1>
       <cart></cart>
     </div>
     <NavBottomView></NavBottomView>

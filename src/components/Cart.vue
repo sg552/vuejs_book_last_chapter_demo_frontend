@@ -27,6 +27,9 @@
       <li v-for="p in products">
         <img :src="p.image"/>
         {{ p.title }} - {{ p.price | currency }} x {{ p.quantity }}
+        <p><button @click="add(p.id)">Add</button></p>
+        <p><button @click="minus(p.id)">Minus</button></p>
+        <p><button @click="deleteItem(p.id)">Delete</button></p>
       </li>
     </ul>
     <p>Total: {{ total | currency }}</p>
@@ -57,6 +60,15 @@ export default {
   methods: {
     checkout (products) {
       this.$store.dispatch('checkout', products)
+    },
+    add (id) {
+      this.$store.dispatch('changeItemNumber', {id, type: 'add'})
+    },
+    minus (id) {
+      this.$store.dispatch('changeItemNumber', {id, type: 'minus'})
+    },
+    deleteItem (id) {
+      this.$store.dispatch('deleteItem', id)
     }
   }
 }

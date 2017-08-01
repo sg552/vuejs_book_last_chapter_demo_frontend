@@ -30,7 +30,7 @@
 import { go } from '../libs/router'
 
 export default {
-  data (){
+  data () {
     return{
       mobile_phone: "",
       yan_zheng: "",
