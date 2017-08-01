@@ -26,6 +26,7 @@
 	                </span>
 	            </div>
 	        </div>
+          <!--
 	        <div class="yguanzhu_box">
 	            <ul class="gunzhuf">
 	                <li class="item">
@@ -48,6 +49,7 @@
 	                </li>
 	            </ul>
 	        </div>
+          -->
 	    </section>
 	    <section class="my_order_box">
 	        <div class="order_top_box" @click="show_all_orders">
