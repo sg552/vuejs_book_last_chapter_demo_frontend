@@ -1,35 +1,32 @@
 <template>
   <div>
-    <span class="divider"></span>
-
-    <section class="my_order_box" style="height: 45px;">
+    <section class="my_order_box" style="height: 44px;">
       <div class="order_top_box">
         <div class="order_left">
           <img src="../assets/images/my_order_icon.png" alt="">
           <span style="margin-left: 0;">订单号</span>
         </div>
         <div class="order_right">
-          <span>20170406481298</span>
+          <span>{{order_id}}</span>
         </div>
       </div>
     </section>
 
-    <section class="product_info clearfix">
-      <div>
-        <div class="fu_li_zhuan_qu" >
-          <img :src="good_images[0]" class="logo_image"/>
-          <div class="content" >
-            <div class="title">
-              {{good.name}}
-            </div>
-            <div class="logo_and_shop_name">
-              <div class="product_pric">
-                <span>￥</span>
-                <span class="rel_price">{{good.price}}</span>
-                <span> &nbsp x {{buy_count}}</span>
-              </div>
-            </div>
-          </div>
+    <MineOrderGood v-for="good in goods" :good_image="good.good_image" :good_name="good.good_name"
+      :price="good.price" :quantity="good.quantity"></MineOrderGood>
+
+
+    <span class="divider" style="height: 6px;"></span>
+
+    <section class="my_order_box" style="height: 45px;">
+      <div class="order_top_box">
+        <div class="order_left">
+          <img src="../assets/images/mypackage.png" alt="">
+          <span style="margin-left: 0; font-size: 16px;">合计:</span>
+        </div>
+        <div class="order_right" style="color: #F23434; font-size: 20px; font-weight: 600;">
+          <span>￥</span>
+          <span >{{total_cost}}</span>
         </div>
       </div>
     </section>
@@ -37,6 +34,8 @@
 </template>
 
 <script>
+	import MineOrderGood from './MineOrderGood.vue';
+
 	export default{
     data () {
       return {
@@ -45,79 +44,18 @@
         buy_count: 1,
       }
     },
+    props:  {
+      order_id: [String, Number],
+      total_cost: [String, Number],
+      goods: [],
+    },
 		components:{
+      MineOrderGood
 		}
 	}
 </script>
 
-<style>
+<style scoped>
 @import '../assets/css/detail.css';
 @import '../assets/css/mine.css';
-
-.shop_layout-scroll-absolute {
-  background-color: rgba(232, 81, 11, 0.78);
-}
-
-.fu_li_zhuan_qu {
-  background-color: white;
-  height: 110px;
-  position: relative;
-}
-
-.fu_li_zhuan_qu .logo_image {
-  width: 120px;
-  height: 90px;
-  position: absolute;
-  left: 15px;
-  top: 0;
-  bottom: 0;
-  margin: auto;
-}
-
-.fu_li_zhuan_qu .content {
-  margin-left: 160px;
-  margin-right: 15px;
-  position: relative;
-  color: #434343;
-  letter-spacing: .5px;
-  font-family: 'PingFangSC Regular';
-  font-size: 16px;
-  text-align: left;
-  top: 20px;
-  height: 70px;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-.fu_li_zhuan_qu .content .title {
-  overflow: hidden;
-  height: 40px;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  line-height: 20px;
-  -webkit-line-clamp: 2;
-}
-
-.fu_li_zhuan_qu .logo_and_shop_name {
-  height: 34px;
-  margin-top: 5px;
-}
-.details {
-  outline:none;
-  border:0;
-  font-size: 15px;
-  line-height: 26px;
-  width: 50%;
-  float: right;
-  text-align:right;
-}
-
-.title {
-  background-color: white;
-  text-align: left;
-  font-size: 17px;
-  @include px2rem(padding, 10px);
-  @include px2rem(padding-left, 15px);
-  @include px2rem(padding-right, 15px);
-  color: black;
-}
 </style>
