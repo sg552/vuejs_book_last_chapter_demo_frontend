@@ -5,6 +5,9 @@ import App from './main.vue'
 import router from './router'
 import VueResource from 'vue-resource'
 import vueConfig from './vue-config'
+import { currency } from './currency'
+
+Vue.filter('currency', currency)
 
 Vue.config.productionTip = false
 Vue.use(VueResource)

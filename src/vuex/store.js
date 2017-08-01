@@ -4,6 +4,8 @@ import userInfo from './modules/user_info'
 import tabbar from './modules/tabbar'
 import toast from './modules/toast'
 import countdown from './modules/countdown'
+import products from './modules/products'
+import shopping_car from './modules/shopping_car'
 
 Vue.use(Vuex)
 
@@ -15,6 +17,8 @@ export default new Vuex.Store({
     h5_share: 'http://ptbh5.siwei.me/?#'
   },
   modules: {
+    products,
+    shopping_car,
     userInfo,
     tabbar,
     toast,
