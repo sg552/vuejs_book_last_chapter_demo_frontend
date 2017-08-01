@@ -107,6 +107,7 @@ import { go } from '../../libs/router'
             },
             zhifu () {
               go("/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count, this.$router)
+              //this.$router.push({path: "/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count});
             },
         }
     }
