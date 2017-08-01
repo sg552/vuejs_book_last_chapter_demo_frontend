@@ -178,6 +178,7 @@
               }
             },
             onBridgeReady (order_number) {
+              let that = this
               this.$http.post(this.$configs.api + 'payments/user_pay',
               {
                 open_id: this.$store.state.userInfo.open_id,
@@ -201,12 +202,12 @@
                           // go to success page
                           alert("支付成功")
                           //go('/shops/paysuccess?order_id=' + order_number, this.$router)
-                          this.$router.push({ path: '/shops/paysuccess?order_id=' + order_number });
+                          that.$router.push({ path: '/shops/paysuccess?order_id=' + order_number });
                         } else {
                           // 显示取消支付或者失败
                           alert("支付失败")
                           //go('/shops/payfail?order_id=' + order_number, this.$router)
-                          this.$router.push({ path: '/shops/payfail?order_id=' + order_number });
+                          that.$router.push({ path: '/shops/payfail?order_id=' + order_number });
                         }
                     }
                 );
