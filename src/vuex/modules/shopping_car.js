@@ -1,25 +1,39 @@
-import {
-  ADD_TO_CART,
-  CHECKOUT_REQUEST,
-  CHECKOUT_SUCCESS,
-  CHECKOUT_FAILURE
-} from '../mutation_types'
+import shop from '../../api/shop'
+import * as types from '../mutation_types'
 
 // initial state
 // shape: [{ id, quantity }]
 const state = {
   added: [],
-  lastCheckout: null
+  checkoutStatus: null
+}
+
+// getters
+const getters = {
+  checkoutStatus: state => state.checkoutStatus
+}
+
+// actions
+const actions = {
+  checkout ({ commit, state }, products) {
+    const savedCartItems = [...state.added]
+    commit(types.CHECKOUT_REQUEST)
+    shop.buyProducts(
+      products,
+      () => commit(types.CHECKOUT_SUCCESS),
+      () => commit(types.CHECKOUT_FAILURE, { savedCartItems })
+    )
+  }
 }
 
 // mutations
 const mutations = {
-  [ADD_TO_CART] (state, productId) {
+  [types.ADD_TO_CART] (state, { id }) {
     state.lastCheckout = null
-    const record = state.added.find(p => p.id === productId)
+    const record = state.added.find(p => p.id === id)
     if (!record) {
       state.added.push({
-        id: productId,
+        id,
         quantity: 1
       })
     } else {
@@ -27,25 +41,26 @@ const mutations = {
     }
   },
 
-  [CHECKOUT_REQUEST] (state) {
+  [types.CHECKOUT_REQUEST] (state) {
     // clear cart
     state.added = []
-    state.lastCheckout = null
+    state.checkoutStatus = null
   },
 
-  [CHECKOUT_SUCCESS] (state) {
-    state.lastCheckout = 'successful'
+  [types.CHECKOUT_SUCCESS] (state) {
+    state.checkoutStatus = 'successful'
   },
 
-  [CHECKOUT_FAILURE] (state, savedCartItems) {
+  [types.CHECKOUT_FAILURE] (state, { savedCartItems }) {
     // rollback to the cart saved before sending the request
     state.added = savedCartItems
-    state.lastCheckout = 'failed'
+    state.checkoutStatus = 'failed'
   }
-
 }
 
 export default {
   state,
+  getters,
+  actions,
   mutations
 }
