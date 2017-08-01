@@ -26,15 +26,12 @@
 	export default{
     data () {
       return {
-        good: "",
-        good_images: {},
-        buy_count: 1,
       }
     },
     props:  {
       good_image: String,
       good_name: String,
-      price: String,
+      price: Number,
       quantity: Number,
     },
 		components:{

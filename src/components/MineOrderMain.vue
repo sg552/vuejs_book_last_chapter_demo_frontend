@@ -39,15 +39,12 @@
 	export default{
     data () {
       return {
-        good: "",
-        good_images: {},
-        buy_count: 1,
       }
     },
     props:  {
       order_id: [String, Number],
       total_cost: [String, Number],
-      goods: [],
+      goods: Array,
     },
 		components:{
       MineOrderGood
