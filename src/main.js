@@ -14,8 +14,8 @@ Vue.use(VueResource)
 Vue.http.options.emulateJSON = true;
 
 const configs = {
-  api: 'http://ptbweb.siwei.me/interface/'
-  //api: 'http://localhost:3000/interface/'
+  //api: 'http://ptbweb.siwei.me/interface/'
+  api: 'http://localhost:3000/interface/'
 }
 
 Vue.use(vueConfig, configs)
