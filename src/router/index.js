@@ -66,9 +66,15 @@ export default new Router({
       name: 'wait_to_shouquan',
       component: require('../views/wait_to_shouquan.vue')
     },
-    { path: '/test_cart',
+    {
+      path: '/test_cart',
       name: 'test_cart',
       component: require('../views/cart.vue')
+    },
+    {
+      path: '/shopping_car',
+      name: 'shopping_car',
+      component: require('../views/shoppingCar.vue')
     }
   ]
 })
