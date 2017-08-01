@@ -12,7 +12,7 @@
                     <img src="../assets/images/n-catergry.png" alt="" class="tab-item-icon">
                 </a>
             </router-link>
-            <router-link tag="li" to="/cart" class="tabItem">
+            <router-link tag="li" to="/shopping_car" class="tabItem">
                 <a href="javascript:;" class="tab-item-link">
                     <img src="../assets/images/n-cart.png" alt="" class="tab-item-icon">
                 </a>
