@@ -181,17 +181,32 @@
               }
             },
             buy (){
+              let params
+              if (this.single_pay) {
+                params = {
+                  good_id: this.good_id,
+                  buy_count: this.buy_count,
+                  total_cost: this.total_cost,
+                  guest_remarks: this.guest_remarks,
+                  mobile_user_address: this.mobile_user_address,
+                  mobile_user_name: this.mobile_user_name,
+                  mobile_user_phone: this.mobile_user_phone
+                  //customer_id: this.customer_id
+                }
+              } else {
+                params = {
+                  goods: this.cartProducts,
+                  total_cost: this.total,
+                  guest_remarks: this.guest_remarks,
+                  mobile_user_address: this.mobile_user_address,
+                  mobile_user_name: this.mobile_user_name,
+                  mobile_user_phone: this.mobile_user_phone
+                  //customer_id: this.customer_id
+                }
+              }
               this.$http.post(this.$configs.api + 'goods/buy',
-              {
-                good_id: this.good_id,
-                buy_count: this.buy_count,
-                total_cost: this.total_cost,
-                guest_remarks: this.guest_remarks,
-                mobile_user_address: this.mobile_user_address,
-                mobile_user_name: this.mobile_user_name,
-                mobile_user_phone: this.mobile_user_phone
-                //customer_id: this.customer_id
-              }).then((response) => {
+                params
+              ).then((response) => {
                 console.info("============点击了立即支付===")
                 console.info(response.body.order_number)
                 let order_number =  response.body.order_number
