@@ -44,6 +44,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { go } from '../libs/router'
 
 export default {
   computed: {
@@ -59,7 +60,8 @@ export default {
   },
   methods: {
     checkout (products) {
-      this.$store.dispatch('checkout', products)
+      /*this.$store.dispatch('checkout', products)*/
+      go("/shops/dingdanzhifu", this.$router)
     },
     add (id) {
       this.$store.dispatch('changeItemNumber', {id, type: 'add'})
