@@ -8,8 +8,8 @@ import Dingdanzhifu from '@/views/shops/dingdanzhifu'
 import PaySuccess from '@/views/shops/paysuccess'
 import PayFail from '@/views/shops/payfail'
 import Cart from '@/components/Cart'
-import Mine from '@/components/Mine'
-import MineOrder from '@/components/MineOrder'
+import Mine from '@/views/mine/Mine'
+import MineOrder from '@/views/mine/MineOrder'
 
 Vue.use(Router)
 

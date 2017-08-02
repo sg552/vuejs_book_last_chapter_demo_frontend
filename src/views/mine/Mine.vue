@@ -6,9 +6,9 @@
 	</div>
 </template>
 <script>
-	import MineHeaderView from './MineHeader.vue';
-	import MineMainView from './MineMain.vue';
-  import NavBottomView from './NavBottom.vue';
+	import MineHeaderView from '../../components/MineHeader.vue';
+	import MineMainView from '../../components/MineMain.vue';
+  import NavBottomView from '../../components/NavBottom.vue';
 	export default{
 		components:{
 			MineMainView,
@@ -18,5 +18,5 @@
 	}
 </script>
 <style>
-@import '../assets/css/mine.css';
+@import '../../assets/css/mine.css';
 </style>
