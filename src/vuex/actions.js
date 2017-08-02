@@ -1,6 +1,7 @@
 import * as types from './mutation_types'
 
 export const addToCart = ({ commit }, product) => {
+    console.info('添加购物车')
   //if (product.inventory > 0) {
     commit(types.ADD_TO_CART, {
       id: parseInt(product.id),

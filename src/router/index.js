@@ -8,6 +8,7 @@ import Dingdanzhifu from '@/views/shops/dingdanzhifu'
 import PaySuccess from '@/views/shops/paysuccess'
 import PayFail from '@/views/shops/payfail'
 import Cart from '@/components/Cart'
+import Cart2 from '@/components/Cart2'
 import Mine from '@/views/mine/Mine'
 import MineOrder from '@/views/mine/MineOrder'
 import Address from '@/views/address/address'
@@ -30,6 +31,10 @@ export default new Router({
     { path: '/cart',
       name: 'Cart',
       component: Cart
+    },
+    { path: '/cart2',
+      name: 'Cart2',
+      component: Cart2
     },
     { path: '/mine',
       name: 'Mine',
@@ -75,11 +80,6 @@ export default new Router({
     { path: '/wait_to_shouquan',
       name: 'wait_to_shouquan',
       component: require('../views/wait_to_shouquan.vue')
-    },
-    {
-      path: '/test_cart',
-      name: 'test_cart',
-      component: require('../views/cart.vue')
     },
     {
       path: '/shopping_car',

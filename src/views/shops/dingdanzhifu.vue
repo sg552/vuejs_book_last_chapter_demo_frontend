@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="goods_detail">
+    <div class="goods_detail" style="margin-bottom: 100px;">
       <header class="top_bar">
         <a onclick="window.history.go(-1)" class="icon_back"></a>
         <h3 class="cartname">订单支付</h3>

@@ -109,7 +109,7 @@ import { go } from '../../libs/router'
               this.$store.dispatch('addToCart', goods)
             },
             toCart () {
-              go("/shopping_car", this.$router)
+              go("/cart2", this.$router)
             },
             plus () {
               this.buy_count = this.buy_count + 1

@@ -69,8 +69,8 @@ body {
     width: 100px;
     float: left;
     height: 44px;
-    line-height: 44px;
-    margin-left: 32px;
+    line-height: 42px;
+    margin-left: 25px;
 }
 
 .shop_info .shop_icon {
@@ -135,16 +135,23 @@ body {
 }
 
 .cart_detial_box .item_names {
-    height: 34px;
+    font-size: 16px;
+    text-align: left;
     overflow: hidden;
 }
 
 .cart_detial_box .cart_weight {
-    margin-top: 2px;
     color: #BCCCCA;
     font-size: 12px;
-    margin-bottom: 10px;
-    line-height: 16px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    display: -webkit-box;
+    width: 55%;
+    -webkit-box-orient: vertical;
+    height: 40px;
+    line-height: 20px;
+    text-align: left;
+    -webkit-line-clamp: 2;
 }
 
 .cart_detial_box .cart_weight .my_weigth {
@@ -153,6 +160,7 @@ body {
 
 .cart_detial_box .cart_product_sell {
     width: 100%;
+    text-align: left;
 }
 
 .cart_detial_box .cart_product_sell .product_money {
@@ -182,13 +190,13 @@ body {
 }
 
 .cart_product_sell .cart_add .my_add {
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
 }
 
 .cart_product_sell .cart_add .my_jian {
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
 }
 
 .cart_product_sell .cart_add .my_count {
@@ -260,7 +268,9 @@ body {
 }
 
 .count_money_box .heji {
-    margin-top: 6px;
+    margin-top: 12px;
+    margin-left: 120px;
+    font-size: 14px;
 }
 
 .count_money_box .total_money {
