@@ -10,6 +10,8 @@ import PayFail from '@/views/shops/payfail'
 import Cart from '@/components/Cart'
 import Mine from '@/views/mine/Mine'
 import MineOrder from '@/views/mine/MineOrder'
+import Address from '@/views/address/address'
+import AddAddress from '@/views/address/add'
 
 Vue.use(Router)
 
@@ -36,6 +38,14 @@ export default new Router({
     { path: '/mine_order',
       name: 'MineOrder',
       component: MineOrder
+    },
+    { path: '/address',
+      name: 'Address',
+      component: Address
+    },
+    { path: '/address/add',
+      name: 'AddAddress',
+      component: AddAddress
     },
     {
       path: '/shops/index',

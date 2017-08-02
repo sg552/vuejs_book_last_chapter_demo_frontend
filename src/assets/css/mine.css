@@ -44,9 +44,10 @@ body{
     margin-top: 10px;
 }
 .user_detal .user_name{
-    font-size: 16px;
+    font-size: 20px;
     font-weight: 600;
     line-height: 32px;
+    color: #fff;
 }
 
 .user_detal .reg{

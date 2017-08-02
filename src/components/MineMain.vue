@@ -20,13 +20,13 @@
 	                    </div>
 	                </div>
 	            </div>
-	            <div class="manage_account">
-	                <span>
-	                    账户管理 >
-	                </span>
-	            </div>
 	        </div>
           <!--
+          <div class="manage_account">
+          <span>
+          账户管理 >
+          </span>
+          </div>
 	        <div class="yguanzhu_box">
 	            <ul class="gunzhuf">
 	                <li class="item">
@@ -64,13 +64,13 @@
 	        <div class="order_bottom_box">
 	            <ul>
 	                <li class="order_item">
-	                    <a href="#" class="order_item_link">
+	                    <a href="#/mine_order" class="order_item_link">
 	                        <img src="../assets/images/waitpay.png" alt="" class="order_item_pic">
 	                        <span class="order_item_pay">待付款</span>
 	                    </a>
 	                </li>
 	                <li class="order_item">
-	                    <a href="#" class="order_item_link">
+	                    <a href="#/mine_order" class="order_item_link">
 	                        <img src="../assets/images/wuliu.png" alt="" class="order_item_pic">
 	                        <span class="order_item_pay">待收货</span>
 	                    </a>
@@ -79,7 +79,7 @@
 	        </div>
 	    </section>
 	    <section class="my_order_box">
-	        <div class="order_top_box">
+	        <div class="order_top_box" @click="go_to_address_list">
 	            <div class="order_left">
 	                <img src="../assets/images/mypackage.png" alt="">
 	                <span>地址管理</span>
@@ -115,6 +115,9 @@ import { go } from '../libs/router'
 		methods:{
       show_all_orders () {
         go("/mine_order", this.$router)
+      },
+      go_to_address_list () {
+        go("/address", this.$router)
       }
 		}
 	}
