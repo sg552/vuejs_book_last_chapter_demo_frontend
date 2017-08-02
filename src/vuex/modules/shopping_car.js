@@ -44,11 +44,18 @@ const mutations = {
     }
   },
 
-  [types.DELETE_ITEM] (state, id ) {
+  [types.DELETE_ITEM] (state, { id } ) {
+     console.info(id)
      const record = state.added.find(p => p.id === id)
-     if (!record) {
-       state.added.pop(record)
-     }
+     state.added.forEach((value, index) => {
+       console.info(value)
+       console.info(index)
+       console.info(record)
+       if (value.id === record.id) {
+         state.added.splice(index, 1)
+         return
+       }
+     })
   },
 
   [types.CHANGE_ONE_QUANTITY] (state, { id, type }) {
