@@ -11,7 +11,7 @@
 </template>
 
 <script>
-	import MineOrderMain from './MineOrderMain.vue';
+	import MineOrderMain from '../../components/MineOrderMain.vue';
 
 	export default{
     data(){
@@ -37,5 +37,5 @@
 </script>
 
 <style>
-@import '../assets/css/mine.css';
+@import '../../assets/css/mine.css';
 </style>
