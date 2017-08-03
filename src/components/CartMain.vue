@@ -88,25 +88,6 @@
         </div>
 		</main>
 
-
-  <!--
-  <div class="cart">
-    <h2>Your Cart</h2>
-    <ul>
-      <li v-for="p in products">
-        <img :src="p.image"/>
-        {{ p.title }} - {{ p.price | currency }} x {{ p.quantity }}
-        <p><button @click="add(p.id)">Add</button></p>
-        <p><button @click="minus(p.id)">Minus</button></p>
-        <p><button @click="deleteItem(p.id)">Delete</button></p>
-      </li>
-    </ul>
-    <p>Total: {{ total | currency }}</p>
-    <p><button :disabled="!products.length" @click="checkout(products)">Checkout</button></p>
-    <p v-show="checkoutStatus">Checkout {{ checkoutStatus }}.</p>
-  </div>
-  -->
-
 </template>
 <script>
  import { mapGetters } from 'vuex'

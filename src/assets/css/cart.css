@@ -209,7 +209,7 @@ body {
 
 .cart_product_sell .cart_add .my_count {
     height: 24px;
-    width: 30px;
+    width: 25px;
     border-top: 1px solid #CBCBCB;
     border-bottom: 1px solid #CBCBCB;
     text-align: center;
@@ -272,7 +272,7 @@ body {
 .cart_footer .count_money_box {
     float: left;
     height: 50px;
-    margin-left: 80px;
+    margin-left: 50px;
 }
 
 .count_money_box .heji {
@@ -350,7 +350,7 @@ body {
     line-height: 35px;
     border: 1px solid #bfbfbf;
     border-radius: 4px;
-    background: #D8505C;
+    background: #ff621a;
     color: #fff;
     margin-left: 15%;
 }

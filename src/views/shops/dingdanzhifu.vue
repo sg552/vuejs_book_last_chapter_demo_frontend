@@ -1,109 +1,111 @@
 <template>
   <div class="background">
-    <div class="goods_detail" style="margin-bottom: 100px;">
-      <header class="top_bar">
-        <a onclick="window.history.go(-1)" class="icon_back"></a>
-        <h3 class="cartname">订单支付</h3>
-      </header>
+    <div class="tast_list_bd" style="background-color: #F3F3F3; padding-top: 0; padding-bottom: 80px;">
+      <div class="goods_detail" style="">
+        <header class="top_bar">
+          <a onclick="window.history.go(-1)" class="icon_back"></a>
+          <h3 class="cartname">订单支付</h3>
+        </header>
 
-      <main class="detail_box">
-      <section class="banner_box">
-        <div style="margin-top: 45px">
-          <div class="extra_cost">
-            <span style="float: left; margin-left: 15px;"> 收货地址:</span>
-            <input v-model="mobile_user_address"  type="text" name="cost" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
-          </div>
-          <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 31px;"> 收货人:</span>
-            <input v-model="mobile_user_name" type="text" name="cost" placeholder="例如: 张三" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
-          </div>
-          <div class="extra_cost" style=" ">
-            <span style="float: left; margin-left: 48px;"> 电话:</span>
-            <input v-model="mobile_user_phone" type="text" name="cost" placeholder="例如: 18588888888" style="border: 0; background-color: white;
-            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
-          </div>
-        </div>
-      </section>
-
-      <span class="divider"></span>
-
-      <section class="product_info clearfix" v-if="single_pay">
-        <div>
-          <div class="fu_li_zhuan_qu" >
-            <img :src="good_images[0]" class="logo_image"/>
-            <div class="content" >
-              <div class="title">
-                {{good.name}}
-              </div>
-              <div class="logo_and_shop_name">
-                <div class="product_pric">
-                  <span>￥</span>
-                  <span class="rel_price">{{good.price}}</span>
-                  <span> &nbsp x {{buy_count}}</span>
-                </div>
-              </div>
+        <main class="detail_box">
+        <section class="banner_box">
+          <div style="margin-top: 45px">
+            <div class="extra_cost">
+              <span style="float: left; margin-left: 15px;"> 收货地址:</span>
+              <input v-model="mobile_user_address"  type="text" name="cost" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201" style="border: 0; background-color: white;
+              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+            </div>
+            <div class="extra_cost" style=" ">
+              <span style="float: left; margin-left: 31px;"> 收货人:</span>
+              <input v-model="mobile_user_name" type="text" name="cost" placeholder="例如: 张三" style="border: 0; background-color: white;
+              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+            </div>
+            <div class="extra_cost" style=" ">
+              <span style="float: left; margin-left: 48px;"> 电话:</span>
+              <input v-model="mobile_user_phone" type="text" name="cost" placeholder="例如: 18588888888" style="border: 0; background-color: white;
+              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section class="product_info clearfix" v-else v-for="product in cartProducts">
-        <div>
-          <div class="fu_li_zhuan_qu" >
-            <img :src="product.image" class="logo_image"/>
-            <div class="content" >
-              <div class="title">
-                {{product.title}}
-              </div>
-              <div class="logo_and_shop_name">
-                <div class="product_pric">
-                  <span>￥</span>
-                  <span class="rel_price">{{product.price}}</span>
-                  <span> &nbsp x {{product.quantity}}</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section>
-        <span class="divider" style="height: 15px;"></span>
-        <div class="extra_cost" style=" ">
-          <span style="float: left; margin-left: 15px;"> 卖家留言:</span>
-          <input v-model="guest_remarks" id="extra_charge" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
-          font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
-        </div>
-      </section>
-
-      <section>
         <span class="divider"></span>
-        <div class="extra_cost" style=" ">
-          <span style="float: left; margin-left: 15px;"> 应付金额:</span>
-          <div v-if="single_pay" class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-          font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{total_cost | currency }}</div>
-          <div v-else class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-          font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{ total | currency }}</div>
 
-        </div>
-      </section>
-      </main>
-
-      <span class="divider"></span>
-
-      <div style="height: 80px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
-        <div style="flex: 1; display: flex;">
-          <div style="width:60px; height: 60px; margin-top: 10px;">
-            <img src="../../assets/微信icon@3x.png" />
+        <section class="product_info clearfix" v-if="single_pay">
+          <div>
+            <div class="fu_li_zhuan_qu" >
+              <img :src="good_images[0]" class="logo_image"/>
+              <div class="content" >
+                <div class="title">
+                  {{good.name}}
+                </div>
+                <div class="logo_and_shop_name">
+                  <div class="product_pric">
+                    <span>￥</span>
+                    <span class="rel_price">{{good.price}}</span>
+                    <span> &nbsp x {{buy_count}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <span style="margin-top: 20px; font-size: 20px; line-height:40px;margin-left: 10px;">微信支付</span>
-        </div>
+        </section>
 
-        <div style=" padding: 14px 10px;" @click="user_wechat">
-          <img src="../../assets/选中3x.png"/>
-          <!--<img src="../../assets/未选中3x.png" v-else/>-->
+        <section class="product_info clearfix" v-else v-for="product in cartProducts">
+          <div>
+            <div class="fu_li_zhuan_qu" >
+              <img :src="product.image" class="logo_image"/>
+              <div class="content" >
+                <div class="title">
+                  {{product.title}}
+                </div>
+                <div class="logo_and_shop_name">
+                  <div class="product_pric">
+                    <span>￥</span>
+                    <span class="rel_price">{{product.price}}</span>
+                    <span> &nbsp x {{product.quantity}}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section>
+          <span class="divider" style="height: 15px;"></span>
+          <div class="extra_cost" style=" ">
+            <span style="float: left; margin-left: 15px;"> 卖家留言:</span>
+            <input v-model="guest_remarks" id="extra_charge" type="text" name="cost" placeholder="选填: 对本次交易的说明" style="border: 0; background-color: white;
+            font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+          </div>
+        </section>
+
+        <section>
+          <span class="divider"></span>
+          <div class="extra_cost" style=" ">
+            <span style="float: left; margin-left: 15px;"> 应付金额:</span>
+            <div v-if="single_pay" class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
+              font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{total_cost | currency }}</div>
+            <div v-else class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
+              font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{ total | currency }}</div>
+
+          </div>
+        </section>
+        </main>
+
+        <span class="divider"></span>
+
+        <div style="height: 80px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
+          <div style="flex: 1; display: flex;">
+            <div style="width:60px; height: 60px; margin-top: 10px;">
+              <img src="../../assets/微信icon@3x.png" />
+            </div>
+            <span style="margin-top: 20px; font-size: 20px; line-height:40px;margin-left: 10px;">微信支付</span>
+          </div>
+
+          <div style=" padding: 14px 10px;" @click="user_wechat">
+            <img src="../../assets/选中3x.png"/>
+            <!--<img src="../../assets/未选中3x.png" v-else/>-->
+          </div>
         </div>
       </div>
 

@@ -1,14 +1,18 @@
 <template>
-	<div id="my_cart">
-
-		<CartHeaderView></CartHeaderView>
-		<CartMainView></CartMainView>
-    <NavBottomView></NavBottomView>
-	</div>
+  <div class="background">
+    <div id="my_cart">
+      <CartHeaderView></CartHeaderView>
+      <CartMainView></CartMainView>
+      <NavBottomView></NavBottomView>
+    </div>
+  </div>
 </template>
 
-<style>
+<style scoped>
 @import '../assets/css/cart.css';
+.background {
+  margin-bottom: 30px;
+}
 </style>
 
 <script>
