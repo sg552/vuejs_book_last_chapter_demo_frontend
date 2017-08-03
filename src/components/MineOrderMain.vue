@@ -4,10 +4,13 @@
       <div class="order_top_box">
         <div class="order_left">
           <img src="../assets/images/my_order_icon.png" alt="">
-          <span style="margin-left: 0;">订单号</span>
+          <span style="margin-left: 0;">订单号:</span>
         </div>
-        <div class="order_right">
+        <div class="order_right" style="float: left;">
           <span>{{order_id}}</span>
+        </div>
+        <div class="" style="float: right;">
+          <span style="color: #ff621a;">{{status_text}}</span>
         </div>
       </div>
     </section>
@@ -44,7 +47,20 @@
     props:  {
       order_id: [String, Number],
       total_cost: [String, Number],
+      is_dispatch: Boolean,
+      order_status: Boolean,
       goods: Array,
+    },
+    computed: {
+      status_text () {
+        if (!this.order_status) {
+          return "未支付"
+        } else if (this.is_dispatch) {
+          return "已发货"
+        } else {
+          return "未发货"
+        }
+      }
     },
 		components:{
       MineOrderGood

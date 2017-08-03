@@ -6,7 +6,8 @@
       </header>
     </div>
     <span class="divider" style="height: 45px;"></span>
-    <MineOrderMain v-for="order in orders" :goods="order.goods" :order_id="order.order_id" :total_cost="order.total_cost"></MineOrderMain>
+    <MineOrderMain v-for="order in orders" :goods="order.goods" :order_id="order.order_id" :total_cost="order.total_cost"
+    :order_status="order.order_status" :is_dispatch="order.is_dispatch"></MineOrderMain>
   </div>
 </template>
 
