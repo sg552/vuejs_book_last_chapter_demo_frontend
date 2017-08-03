@@ -109,14 +109,14 @@
           </div>
         </div>
       </div>
-
-      <div class="shop_layout-scroll-absolute" style="">
-        <div class="queding" @click="buy">
-          立即支付
-        </div>
-      </div>
-
     </div>
+
+    <div class="shop_layout-scroll-absolute" style="">
+      <div class="queding" @click="buy">
+        立即支付
+      </div>
+    </div>
+
   </div>
 </template>
 <script>
@@ -129,6 +129,7 @@
                 good: "",
                 buy_count: this.$route.query.buy_count,
                 good_id: this.$route.query.good_id,
+                open_id: this.$store.state.userInfo.open_id,
                 mobile_user_address: '',
                 mobile_user_name: '',
                 mobile_user_phone: '',
@@ -193,8 +194,8 @@
                   guest_remarks: this.guest_remarks,
                   mobile_user_address: this.mobile_user_address,
                   mobile_user_name: this.mobile_user_name,
-                  mobile_user_phone: this.mobile_user_phone
-                  //customer_id: this.customer_id
+                  mobile_user_phone: this.mobile_user_phone,
+                  open_id: this.open_id
                 }
               } else {
                 console.info(this.total)
@@ -204,8 +205,8 @@
                   guest_remarks: this.guest_remarks,
                   mobile_user_address: this.mobile_user_address,
                   mobile_user_name: this.mobile_user_name,
-                  mobile_user_phone: this.mobile_user_phone
-                  //customer_id: this.customer_id
+                  mobile_user_phone: this.mobile_user_phone,
+                  open_id: this.open_id
                 }
               }
               this.$http.post(this.$configs.api + 'goods/buy',
