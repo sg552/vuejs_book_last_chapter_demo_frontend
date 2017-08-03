@@ -49,6 +49,8 @@
       total_cost: [String, Number],
       is_dispatch: Boolean,
       order_status: Boolean,
+      url_is_dispatch: String,
+      url_order_status: String,
       goods: Array,
     },
     computed: {

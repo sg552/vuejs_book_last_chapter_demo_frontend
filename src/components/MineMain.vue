@@ -64,13 +64,13 @@
 	        <div class="order_bottom_box">
 	            <ul>
 	                <li class="order_item">
-	                    <a href="#/mine_order" class="order_item_link">
+	                    <a href="#/mine_order?order_status=false" class="order_item_link">
 	                        <img src="../assets/images/waitpay.png" alt="" class="order_item_pic">
 	                        <span class="order_item_pay">待付款</span>
 	                    </a>
 	                </li>
 	                <li class="order_item">
-	                    <a href="#/mine_order" class="order_item_link">
+	                    <a href="#/mine_order?order_status=true" class="order_item_link">
 	                        <img src="../assets/images/wuliu.png" alt="" class="order_item_pic">
 	                        <span class="order_item_pay">待收货</span>
 	                    </a>

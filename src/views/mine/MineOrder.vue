@@ -7,7 +7,7 @@
     </div>
     <span class="divider" style="height: 45px;"></span>
     <MineOrderMain v-for="order in orders" :goods="order.goods" :order_id="order.order_id" :total_cost="order.total_cost"
-    :order_status="order.order_status" :is_dispatch="order.is_dispatch"></MineOrderMain>
+    :order_status="order.order_status" :is_dispatch="order.is_dispatch" ></MineOrderMain>
   </div>
 </template>
 
@@ -19,13 +19,26 @@
       return {
         orders: [],
         buy_count: 1,
+        order_status: this.$route.query.order_status,
+        is_dispatch: this.$route.query.is_dispatch
       }
     },
 		components:{
 			MineOrderMain
 		},
+    computed: {
+      get_orders_url () {
+        if (this.order_status === "false") {
+          return 'orders/get_all_orders?order_status=false'
+        } else if (this.order_status === "true"){
+          return 'orders/get_all_orders?order_status=true'
+        } else {
+          return 'orders/get_all_orders'
+        }
+      }
+    },
     mounted(){
-      this.$http.get(this.$configs.api + 'orders/get_all_orders').then((response)=>{
+      this.$http.get(this.$configs.api + this.get_orders_url).then((response)=>{
         console.info(response.body)
         this.orders = response.body.orders
       },(error) => {
