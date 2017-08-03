@@ -108,8 +108,7 @@ body {
     width: 118px;
     height: 6px;
     position: absolute;
-    left: 50%;
-    margin-left: -59px;
+    left: 48%;
     bottom: 10px;
 }
 
@@ -190,14 +189,14 @@ body {
 }
 .product_left{
     width: 100%;
-    height: 32px;
+    height: 40px;
     display: block;
 }
 
 .product_left div{
-  font-size: 16px;
-  line-height: 28px;
-  color: #f35e06;
+  font-size: 18px;
+  line-height: 40px;
+  color: #ff621a;
   font-weight: 500;
   background-color: #fff;
 }

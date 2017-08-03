@@ -1,4 +1,4 @@
-body {
+font-weight: bold; body {
     background-color: #F0F2F5;
 }
 
@@ -122,7 +122,7 @@ body {
 }
 
 .product_pric span {
-    color: #F23434;
+    color: #ff621a;
 }
 
 .product_pric span:nth-child(1) {
