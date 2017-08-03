@@ -8,7 +8,7 @@
 		                </div>
 		            </div>
 		            <div class="shop_info clearfix">
-		                <span class="shop_name" style="font-size: 14px;">思路乐购新疆商城</span>
+		                <span class="shop_name" style="font-size: 14px;">丝路乐购新疆商城</span>
 		            </div>
 		        </div>
 
