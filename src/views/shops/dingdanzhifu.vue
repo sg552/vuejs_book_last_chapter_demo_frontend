@@ -194,6 +194,7 @@
                   //customer_id: this.customer_id
                 }
               } else {
+                console.info(this.total)
                 params = {
                   goods: this.cartProducts,
                   total_cost: this.total,
@@ -230,10 +231,16 @@
             },
             onBridgeReady (order_number) {
               let that = this
+              let total_cost
+              if (this.single_pay) {
+                total_cost = this.total_cost
+              } else {
+                total_cost = this.total
+              }
               this.$http.post(this.$configs.api + 'payments/user_pay',
               {
                 open_id: this.$store.state.userInfo.open_id,
-                total_cost: this.total_cost,
+                total_cost: total_cost,
                 order_number: order_number
               }).then((response) => {
                 WeixinJSBridge.invoke(
