@@ -1,11 +1,12 @@
 <template>
   <div class="background">
+    <header class="top_bar">
+      <a onclick="window.history.go(-1)" class="icon_back"></a>
+      <h3 class="cartname">订单支付</h3>
+    </header>
+
     <div class="tast_list_bd" style="background-color: #F3F3F3; padding-top: 0; padding-bottom: 80px;">
       <div class="goods_detail" style="">
-        <header class="top_bar">
-          <a onclick="window.history.go(-1)" class="icon_back"></a>
-          <h3 class="cartname">订单支付</h3>
-        </header>
 
         <main class="detail_box">
         <section class="banner_box">
@@ -84,9 +85,9 @@
           <div class="extra_cost" style=" ">
             <span style="float: left; margin-left: 15px;"> 应付金额:</span>
             <div v-if="single_pay" class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-              font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{total_cost | currency }}</div>
+            font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{total_cost | currency }}</div>
             <div v-else class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-              font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{ total | currency }}</div>
+            font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{ total | currency }}</div>
 
           </div>
         </section>
