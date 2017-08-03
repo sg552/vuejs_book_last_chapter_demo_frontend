@@ -5,25 +5,25 @@
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
                             <img src="../assets/images/nav0.png" alt="">
-                            <span>干果茶</span>
+                            <span>草原特色肉</span>
                         </a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
                             <img src="../assets/images/nav1.png" alt="">
-                            <span>宝玉石</span>
+                            <span>特色干果</span>
                         </a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
                             <img src="../assets/images/nav2.png" alt="">
-                            <span>鲜果</span>
+                            <span>特色瓜子</span>
                         </a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
                             <img src="../assets/images/nav3.png" alt="">
-                            <span>香料</span>
+                            <span>特色大米</span>
                         </a>
                     </li>
                 </ul>

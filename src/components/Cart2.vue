@@ -3,6 +3,7 @@
 
 		<CartHeaderView></CartHeaderView>
 		<CartMainView></CartMainView>
+    <NavBottomView></NavBottomView>
 	</div>
 </template>
 
@@ -19,6 +20,7 @@ export default {
  import CartHeaderView from './CartHeader.vue';
  import CartMainView from './CartMain.vue';
  import CartFooterView from './CartFooter.vue';
+ import NavBottomView from './NavBottom.vue';
 
  export default{
    data () {
@@ -30,7 +32,8 @@ export default {
    components:{
      CartHeaderView,
      CartMainView,
-     CartFooterView
+     CartFooterView,
+     NavBottomView
    }
  }
 </script>

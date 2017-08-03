@@ -1,16 +1,23 @@
 <template>
 		<main class="cart_box">
     <p v-show="!products.length"><i>请选择商品加入到购物车</i></p>
-		    <div class="cart_content clearfix" v-for="item in products">
+		    <div class="cart_content clearfix" v-for="item in products" style="position: relative;">
 		        <div class="cart_shop clearfix">
 		            <div class="cart_check_box">
-		                <div class="check_box">
+		                <div class="check_box" checked>
 		                </div>
 		            </div>
 		            <div class="shop_info clearfix">
-		                <span class="shop_name">思路乐购新疆商城</span>
+		                <span class="shop_name" style="font-size: 14px;">思路乐购新疆商城</span>
 		            </div>
 		        </div>
+
+            <div @click="find_item_id(item)" class="cart_del clearfix" style="display: inline-block; position: absolute; top: 10px; right: 10px;">
+              <div class="del_top">
+              </div>
+              <div class="del_bottom">
+              </div>
+            </div>
 		        <div class="cart_item">
 		            <div class="cart_item_box">
 		                <div class="check_box">
@@ -27,24 +34,18 @@
 		                    </a>
 		                </div>
 		                <div class="cart_weight">
-                      <span class="my_color">{{item.title}}</span>
+                      <span class="my_color" style="color: #979292;">{{item.title}}</span>
                       <!--
 		                    <i class="my_weigth">重量:0.45kg</i>
 		                    <span class="my_color">颜色:AT800/16</span>
                       -->
 		                </div>
 		                <div class="cart_product_sell">
-		                    <span class="product_money">￥<strong class="real_money">{{item.price}}</strong>.00</span>
+		                    <span class="product_money">￥<strong class="real_money">{{item.price}}</strong></span>
 		                    <div class="cart_add clearfix">
 		                        <span @click="minus(item.id)" class="my_jian">-</span>
 		                        <input type="tel" class="my_count" :value="item.quantity">
 		                        <span @click="add(item.id)" class="my_add">+</span>
-		                    </div>
-		                </div>
-		                <div @click="find_item_id(item)" class="cart_del clearfix">
-		                    <div class="del_top">
-		                    </div>
-		                    <div class="del_bottom">
 		                    </div>
 		                </div>
 		            </div>
@@ -77,7 +78,7 @@
             <div class="count_money_box">
               <div class="heji">
                 <strong>合计:</strong>
-                <strong style="color: #F23030; font-size: 18px;">{{ total | currency }}</strong>
+                <strong style="color: #ff621a; font-size: 18px;">{{ total | currency }}</strong>
               </div>
               <a :disabled="!products.length" @click="checkout(products)" class="go_pay">
                 <span style="color: #f5f5f5; font-weight: 600;">结算</span>
@@ -144,8 +145,8 @@
         checkoutStatus: 'checkoutStatus'
       }),
       total () {
-        return this.products.reduce((total, p) => {
-          return total + p.price * p.quantity
+        return this.products.reduce((total, item) => {
+          return total + item.price * item.quantity
         }, 0)
       }
     },
@@ -169,3 +170,6 @@
     },
 	}
 </script>
+
+<style >
+</style>
