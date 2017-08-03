@@ -13,7 +13,6 @@
         <span class="divider" style="height: 4px;"></span>
         <div class="product_top">
           <div class="product_left">
-            <span class="divider" style="height: 4px;"></span>
             <div>商品列表</div>
           </div>
         </div>

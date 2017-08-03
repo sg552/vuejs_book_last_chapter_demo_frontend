@@ -4,7 +4,6 @@
       <h1>Shopping Cart</h1>
       <cart></cart>
     </div>
-    <NavBottomView></NavBottomView>
   </div>
 </template>
 

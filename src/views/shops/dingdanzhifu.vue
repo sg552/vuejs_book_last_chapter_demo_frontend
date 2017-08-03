@@ -83,9 +83,9 @@
         <div class="extra_cost" style=" ">
           <span style="float: left; margin-left: 15px;"> 应付金额:</span>
           <div v-if="single_pay" class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-          font-size: 20px; color: #F23434; outline: none; text-align: right; padding-right: 20px;"> ￥{{total_cost}}</div>
+          font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{total_cost | currency }}</div>
           <div v-else class="rel_price" type="text" name="cost" style="border: 0; background-color: white;
-          font-size: 20px; color: #F23434; outline: none; text-align: right; padding-right: 20px;"> ￥{{total}}</div>
+          font-size: 20px; color: #ff621a; font-weight: bold; outline: none; text-align: right; padding-right: 20px;"> {{ total | currency }}</div>
 
         </div>
       </section>
@@ -102,8 +102,8 @@
         </div>
 
         <div style=" padding: 14px 10px;" @click="user_wechat">
-          <img src="../../assets/选中3x.png"  v-if="is_use_wechat"/>
-          <img src="../../assets/未选中3x.png" v-else/>
+          <img src="../../assets/选中3x.png"/>
+          <!--<img src="../../assets/未选中3x.png" v-else/>-->
         </div>
       </div>
 
@@ -150,7 +150,7 @@
         computed:  {
             total () {
               return this.cartProducts.reduce((total, p) => {
-                return total + p.price * p.quantity
+                return (total + p.price * p.quantity)
               }, 0)
             },
             single_pay () {
@@ -283,7 +283,7 @@
 }
 
 .shop_layout-scroll-absolute {
-  background-color: rgba(232, 81, 11, 0.78);
+  background-color: #ff621a;
 }
 
 .fu_li_zhuan_qu {
