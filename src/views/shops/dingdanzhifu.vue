@@ -95,16 +95,16 @@
 
         <span class="divider"></span>
 
-        <div style="height: 80px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
+        <div style="height: 55px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
           <div style="flex: 1; display: flex;">
-            <div style="width:60px; height: 60px; margin-top: 10px;">
-              <img src="../../assets/微信icon@3x.png" />
+            <div style="margin-top: 10px;">
+              <img src="../../assets/微信icon@3x.png" style="width: 35px;"/>
             </div>
-            <span style="margin-top: 20px; font-size: 20px; line-height:40px;margin-left: 10px;">微信支付</span>
+            <span style="margin-top: 8px; font-size: 18px; line-height:40px;margin-left: 10px;">微信支付</span>
           </div>
 
           <div style=" padding: 14px 10px;" @click="user_wechat">
-            <img src="../../assets/选中3x.png"/>
+            <img src="../../assets/选中3x.png" style="width: 28px;"/>
             <!--<img src="../../assets/未选中3x.png" v-else/>-->
           </div>
         </div>
