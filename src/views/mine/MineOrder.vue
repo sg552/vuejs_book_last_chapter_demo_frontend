@@ -29,21 +29,23 @@
     computed: {
       get_orders_url () {
         if (this.order_status === "false") {
-          return 'orders/get_all_orders?order_status=false'
-        } else if (this.order_status === "true"){
-          return 'orders/get_all_orders?order_status=true'
+          return ('orders/get_all_orders?order_status=false' + '&open_id=' + this.$store.state.userInfo.open_id)
+        } else if (this.order_status === "true") {
+          return ('orders/get_all_orders?order_status=true'  + '&open_id=' + this.$store.state.userInfo.open_id)
         } else {
-          return 'orders/get_all_orders'
+          return 'orders/get_all_orders?open_id=' + this.$store.state.userInfo.open_id
         }
       }
     },
     mounted(){
-      this.$http.get(this.$configs.api + this.get_orders_url).then((response)=>{
-        console.info(response.body)
-        this.orders = response.body.orders
-      },(error) => {
-        console.error(error)
-      });
+      this.$nextTick(()=>{
+        this.$http.get(this.$configs.api + this.get_orders_url).then((response)=>{
+          console.info(response.body)
+          this.orders = response.body.orders
+        },(error) => {
+          console.error(error)
+        });
+      })
     },
     methods:{
     }
