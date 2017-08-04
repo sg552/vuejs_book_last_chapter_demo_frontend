@@ -7,7 +7,13 @@
       </header>
       <div class="tast_list_bd" style="padding-top: 44px;">
         <main class="detail_box">
-        <section class="banner_box">
+
+        <!-- 轮播图 -->
+        <slider :pages="pages" :sliderinit="sliderinit">
+        <!-- slot  -->
+        </slider>
+        <!--
+        <section class="banner_box" id="my_banner">
           <ul class="banner_child_box">
             <li class="banner_item">
               <img  v-for="image in good_images" :src="image" alt="" class="banner_pic">
@@ -20,6 +26,7 @@
             <em id="slide-sum" class="fz12">5</em>
           </div>
         </section>
+        -->
 
         <section class="product_info clearfix">
           <div class="product_left">
@@ -83,13 +90,26 @@
 </template>
 <script>
 import { go } from '../../libs/router'
+import slider from 'vue-concise-slider'
+
    export default{
         data(){
             return {
                 good_images: [],
                 good: "",
                 buy_count: 1,
-                good_id: this.$route.query.good_id
+                good_id: this.$route.query.good_id,
+                pages: [{title: '', style: {}}],
+								sliderinit: {
+									currentPage: 0,//当前页码
+									thresholdDistance: 500,//滑动判定距离
+									thresholdTime: 100,//滑动判定时间
+									autoplay:3000,//自动滚动[ms]
+									loop:true,//循环滚动
+									direction:'horizontal',//方向设置，垂直滚动
+									infinite:1,//无限滚动前后遍历数
+									slidesToScroll:1,//每次滑动项数
+								}
             }
         },
         watch:{
@@ -100,6 +120,15 @@ import { go } from '../../libs/router'
              console.info(response.body)
              this.good = response.body.good
              this.good_images = response.body.good_images
+             this.pages = response.body.good_images.map(function(image){
+               return {
+                 title: '',
+                 style: {
+                   background: 'url(' + image + ' )'
+                 }
+               }
+             })
+             console.info(this.pages)
            },(error) => {
              console.error(error)
            });
@@ -132,6 +161,9 @@ import { go } from '../../libs/router'
               go("/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count, this.$router)
               //this.$router.push({path: "/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count});
             },
+        },
+        components: {
+          slider
         }
     }
 </script>
@@ -142,4 +174,9 @@ import { go } from '../../libs/router'
   margin-bottom: 30px;
 }
 
+.slider-container{
+  height: 300px;
+  margin: 0;
+  width: 100%;
+}
 </style>
