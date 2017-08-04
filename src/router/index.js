@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Hello from '@/components/Hello'
 import Login from '@/views/login'
 import Index from '@/views/shops/index'
+import Category from '@/views/shops/category'
 import GoodsDetails from '@/views/shops/goods_details'
 import Dingdanzhifu from '@/views/shops/dingdanzhifu'
 import PaySuccess from '@/views/shops/paysuccess'
@@ -56,6 +57,11 @@ export default new Router({
       path: '/shops/index',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/shops/category',
+      name: 'Category',
+      component: Category
     },
     {
       path: '/shops/goods_details',
