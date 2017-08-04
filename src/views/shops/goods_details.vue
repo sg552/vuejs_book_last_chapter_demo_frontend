@@ -107,6 +107,7 @@ import { go } from '../../libs/router'
         methods:{
             addToCart () {
               console.info('加入购物车')
+              alert("商品已经加入到了购物车")
               let goods = {
                 id: this.good_id,
                 title: this.good.name,
