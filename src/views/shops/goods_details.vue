@@ -28,10 +28,19 @@
               <span>￥</span>
               <span class="rel_price">{{good.price}}</span>
               <span></span>
+
+              <span style='    color: grey;
+              text-decoration: line-through;
+              font-size: 18px;
+              margin-left: 14px;' v-if="good.id == 7 ">
+              原价：￥148.00
+              </span>
             </div>
+            <!--
             <div class="product_right">
               降价通知
             </div>
+            -->
           </div>
         </section>
 
@@ -46,9 +55,8 @@
         </div>
 
         <section class="product_intro">
-          <p class="pro_det">
-          {{good.description}}
-          </p>
+          <div class="pro_det" v-html="good.description" style='padding: 0 6.5px;'>
+          </div>
         </section>
         </main>
       </div>
