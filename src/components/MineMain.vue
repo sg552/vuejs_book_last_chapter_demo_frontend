@@ -14,9 +14,11 @@
 	                    <span class="vip_icon">
 	                        <img src="../assets/images/vip.png" alt="">
 	                    </span>
+                      <!--
 	                        <a href="#">
 	                            红包大放送 >
 	                        </a>
+                      -->
 	                    </div>
 	                </div>
 	            </div>
@@ -78,6 +80,7 @@
 	            </ul>
 	        </div>
 	    </section>
+      <!--
 	    <section class="my_order_box">
 	        <div class="order_top_box" @click="go_to_address_list">
 	            <div class="order_left">
@@ -89,6 +92,7 @@
 	            </div>
 	        </div>
 	    </section>
+      -->
 	</main>
 	</div>
 </template>
