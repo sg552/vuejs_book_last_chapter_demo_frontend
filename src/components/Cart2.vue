@@ -3,7 +3,7 @@
     <div id="my_cart">
       <CartHeaderView></CartHeaderView>
       <CartMainView></CartMainView>
-      <NavBottomView></NavBottomView>
+      <NavBottomView :is_cart="is_cart"></NavBottomView>
     </div>
   </div>
 </template>
@@ -29,6 +29,7 @@ export default {
  export default{
    data () {
      return {
+       is_cart: true
      }
    },
    mounted(){

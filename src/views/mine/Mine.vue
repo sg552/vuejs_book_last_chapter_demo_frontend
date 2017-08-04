@@ -2,7 +2,7 @@
 	<div class="user_i">
 	<MineHeaderView></MineHeaderView>
 	<MineMainView></MineMainView>
-  <NavBottomView></NavBottomView>
+  <NavBottomView :is_mine="is_mine"></NavBottomView>
 	</div>
 </template>
 <script>
@@ -10,6 +10,11 @@
 	import MineMainView from '../../components/MineMain.vue';
   import NavBottomView from '../../components/NavBottom.vue';
 	export default{
+    data () {
+      return {
+        is_mine: true
+      }
+    },
 		components:{
 			MineMainView,
 			MineHeaderView,
