@@ -95,12 +95,12 @@
 
         <span class="divider"></span>
 
-        <div style="height: 55px;  display: flex; padding: 0 3%; background-color: #fff;" @click="">
+        <div style="height: 55px;  display: flex; width: 100%; padding: 0px 10px; background-color: #fff;" @click="">
           <div style="flex: 1; display: flex;">
             <div style="margin-top: 10px;">
               <img src="../../assets/微信icon@3x.png" style="width: 35px;"/>
             </div>
-            <span style="margin-top: 8px; font-size: 18px; line-height:40px;margin-left: 10px;">微信支付</span>
+            <span style="margin-top: 8px; font-size: 18px; line-height:40px; margin-left: 10px;">微信支付</span>
           </div>
 
           <div style=" padding: 14px 10px;" @click="user_wechat">
