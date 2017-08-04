@@ -16,13 +16,13 @@
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
-                            <img src="../assets/images/nav2.png" alt="">
+                            <img src="../assets/images/nav9.png" alt="">
                             <span>特色瓜子</span>
                         </a>
                     </li>
                     <li class="nav_item">
                         <a href="#" class="nav_item_link">
-                            <img src="../assets/images/nav3.png" alt="">
+                            <img src="../assets/images/nav8.png" alt="">
                             <span>特色大米</span>
                         </a>
                     </li>
