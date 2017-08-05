@@ -9,9 +9,20 @@
         <main class="detail_box">
 
         <!-- 轮播图 -->
-        <slider :pages="pages" :sliderinit="sliderinit">
-        <!-- slot  -->
-        </slider>
+			<swiper :options="swiperOption" ref="mySwiper">
+				<!-- slides -->
+				<swiper-slide v-for="image in good_images"
+          v-bind:style="{backgroundImage: 'url(' + image + ')'}"
+          style='width:100%; height: 270px;
+          background-position: center center;
+          background-size: cover;
+          '
+          >
+        </swiper-slide>
+				<!-- Optional controls -->
+				<div class="swiper-pagination"  slot="pagination"></div>
+				<div class="swiper-scrollbar"   slot="scrollbar"></div>
+			</swiper>
         <!--
         <section class="banner_box" id="my_banner">
           <ul class="banner_child_box">
@@ -90,7 +101,7 @@
 </template>
 <script>
 import { go } from '../../libs/router'
-import slider from 'vue-concise-slider'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 
    export default{
         data(){
@@ -99,36 +110,43 @@ import slider from 'vue-concise-slider'
                 good: "",
                 buy_count: 1,
                 good_id: this.$route.query.good_id,
-                pages: [{title: '', style: {}}],
-								sliderinit: {
-									currentPage: 0,//当前页码
-									thresholdDistance: 500,//滑动判定距离
-									thresholdTime: 100,//滑动判定时间
-									autoplay:3000,//自动滚动[ms]
-									loop:true,//循环滚动
-									direction:'horizontal',//方向设置，垂直滚动
-									infinite:1,//无限滚动前后遍历数
-									slidesToScroll:1,//每次滑动项数
+								swiperOption: {
+									notNextTick: true,
+									autoplay: 1000,
+									direction : 'horizontal',
+									autoHeight: true,
+									pagination : '.swiper-pagination',
+									paginationClickable :true,
+									scrollbar:'.swiper-scrollbar',
+									observeParents:true,
+									// if you need use plugins in the swiper, you can config in here like this
+									// 如果自行设计了插件，那么插件的一些配置相关参数，也应该出现在这个对象中，如下debugger
+									debugger: true,
+									// swiper callbacks
+									// swiper的各种回调函数也可以出现在这个对象中，和swiper官方一样
+									onTransitionStart(swiper){
+										console.log(swiper)
+									},
+                  loop: true,
+                  autoplay: 2500,
+									// more Swiper configs and callbacks...
+									// ...
 								}
             }
         },
         watch:{
         },
         mounted(){
+
            this.$http.get(this.$configs.api + 'goods/goods_details?good_id=' + this.good_id).then((response)=>{
              console.info(this.good_id)
              console.info(response.body)
              this.good = response.body.good
              this.good_images = response.body.good_images
-             this.pages = response.body.good_images.map(function(image){
-               return {
-                 title: '',
-                 style: {
-                   background: 'url(' + image + ' )'
-                 }
-               }
-             })
-             console.info(this.pages)
+
+						 // 初始化轮播图
+             this.swiper.slideTo(1, 1000, false)
+             this.swiper.startAutoplay()
            },(error) => {
              console.error(error)
            });
@@ -163,8 +181,14 @@ import slider from 'vue-concise-slider'
             },
         },
         components: {
-          slider
-        }
+          swiper,
+          swiperSlide
+        },
+				computed: {
+					swiper() {
+						return this.$refs.mySwiper.swiper
+					}
+				}
     }
 </script>
 
@@ -173,10 +197,8 @@ import slider from 'vue-concise-slider'
 .background {
   margin-bottom: 30px;
 }
-
-.slider-container{
-  height: 300px;
-  margin: 0;
-  width: 100%;
+/* 不好使? */
+.swiper-pagination-bullet-active{
+  background: red !important;
 }
 </style>
