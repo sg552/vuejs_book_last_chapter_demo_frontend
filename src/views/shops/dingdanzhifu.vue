@@ -438,4 +438,12 @@
 .label {
 	text-align: left;
 }
+
+.help.is-danger {
+  color: #ff621a;
+}
+
+.input.is-danger, .textarea.is-danger {
+  border-color: #ff621a;
+}
 </style>
