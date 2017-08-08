@@ -185,7 +185,7 @@ import {scrollPic} from '../../libs/index.js'
 <style scoped>
 @import '../../assets/css/detail.css';
 .background {
-  margin-bottom: 30px;
+  margin-bottom: 80px;
 }
 /* 不好使? */
 .swiper-pagination-bullet-active{
