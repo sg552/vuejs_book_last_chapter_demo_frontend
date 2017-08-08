@@ -205,12 +205,11 @@
 									console.info(result)
 									if (result) {
 										// eslint-disable-next-line
-										alert('等待支付');
 										console.info("============表单验证成功===")
 										resolve(true);
 									} else {
-									alert('请填写完整的收货信息!');
-									  resolve(false);
+                    //alert('请填写完整的收货信息!');
+                    resolve(false);
 									}
 								});
 							})
@@ -269,7 +268,7 @@
 										console.error(error)
 									});
 								} else {
-									console.info('false ==== 请填写收货信息')
+									console.info('false ==== 请填写完整的收货信息')
 								}
 							});
 						},
