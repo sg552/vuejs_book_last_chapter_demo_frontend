@@ -9,35 +9,25 @@
         <main class="detail_box">
 
         <!-- 轮播图 -->
-			<swiper :options="swiperOption" ref="mySwiper">
-				<!-- slides -->
-				<swiper-slide v-for="image in good_images"
-          v-bind:style="{backgroundImage: 'url(' + image + ')'}"
-          style='width:100%; height: 270px;
-          background-position: center center;
-          background-size: cover;
-          '
-          >
-        </swiper-slide>
-				<!-- Optional controls -->
-				<div class="swiper-pagination"  slot="pagination"></div>
-				<div class="swiper-scrollbar"   slot="scrollbar"></div>
-			</swiper>
-        <!--
-        <section class="banner_box" id="my_banner">
-          <ul class="banner_child_box">
-            <li class="banner_item">
-              <img  v-for="image in good_images" :src="image" alt="" class="banner_pic">
-            </li>
-          </ul>
-
-          <div class="banner_count">
-            <em id="slide-nub" class="fz18">1</em>
-            <em class="nub-bg">/</em>
-            <em id="slide-sum" class="fz12">5</em>
+        <div class="home_ban">
+          <div class="m_banner clearfix" id="my_banner">
+            <ul class="banner_box" >
+              <div v-for="image in good_images">
+                <li><img :src="image" alt="" style="height: 300px"/></li>
+              </div>
+              <div v-for="image in good_images">
+                <li><img :src="image" alt="" style="height: 300px"/></li>
+              </div>
+            </ul>
+            <ul class="point_box" >
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
           </div>
-        </section>
-        -->
+        </div>
 
         <section class="product_info clearfix">
           <div class="product_left">
@@ -47,11 +37,11 @@
               <span class="rel_price">{{good.price}}</span>
               <span></span>
 
-              <span style='    color: grey;
+              <span style='color: grey;
               text-decoration: line-through;
               font-size: 18px;
-              margin-left: 14px;' v-if="good.id == 7 ">
-              原价：￥148.00
+              margin-left: 14px;'>
+                原价: ￥{{good.original_price}}
               </span>
             </div>
             <!--
@@ -101,15 +91,18 @@
 </template>
 <script>
 import { go } from '../../libs/router'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+//import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {scrollPic} from '../../libs/index.js'
 
    export default{
         data(){
             return {
                 good_images: [],
+                test_image: "http://siweitech.b0.upaiyun.com/image/silulegou/2FgHsjCz7qfpSQr0.jpeg",
                 good: "",
                 buy_count: 1,
                 good_id: this.$route.query.good_id,
+                /*
 								swiperOption: {
 									notNextTick: true,
 									autoplay: 1000,
@@ -132,62 +125,59 @@ import { swiper, swiperSlide } from 'vue-awesome-swiper'
 									// more Swiper configs and callbacks...
 									// ...
 								}
+                */
             }
         },
         watch:{
         },
         mounted(){
+          scrollPic();   //轮播图
 
-           this.$http.get(this.$configs.api + 'goods/goods_details?good_id=' + this.good_id).then((response)=>{
-             console.info(this.good_id)
-             console.info(response.body)
-             this.good = response.body.good
-             this.good_images = response.body.good_images
+          this.$http.get(this.$configs.api + 'goods/goods_details?good_id=' + this.good_id).then((response)=>{
+            console.info(this.good_id)
+            console.info(response.body)
+            this.good = response.body.good
+            this.good_images = response.body.good_images
 
-						 // 初始化轮播图
-             this.swiper.slideTo(1, 1000, false)
-             this.swiper.startAutoplay()
-           },(error) => {
-             console.error(error)
-           });
+            // 初始化轮播图
+            //this.swiper.slideTo(1, 1000, false)
+            //this.swiper.startAutoplay()
+          },(error) => {
+            console.error(error)
+          });
         },
         methods:{
-            addToCart () {
-              console.info('加入购物车')
-              alert("商品已经加入到了购物车")
-              let goods = {
-                id: this.good_id,
-                title: this.good.name,
-                quantity: this.buy_count,
-                price: this.good.price,
-                image: this.good_images[0]
-              }
-              this.$store.dispatch('addToCart', goods)
-            },
-            toCart () {
-              go("/cart2", this.$router)
-            },
-            plus () {
-              this.buy_count = this.buy_count + 1
-            },
-            minus () {
-              if(this.buy_count > 1) {
-                this.buy_count = this.buy_count - 1
-              }
-            },
-            zhifu () {
-              go("/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count, this.$router)
-              //this.$router.push({path: "/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count});
-            },
+          addToCart () {
+            console.info('加入购物车')
+            alert("商品已经加入到了购物车")
+            let goods = {
+              id: this.good_id,
+              title: this.good.name,
+              quantity: this.buy_count,
+              price: this.good.price,
+              image: this.good_images[0]
+            }
+            this.$store.dispatch('addToCart', goods)
+          },
+          toCart () {
+            go("/cart2", this.$router)
+          },
+          plus () {
+            this.buy_count = this.buy_count + 1
+          },
+          minus () {
+            if(this.buy_count > 1) {
+              this.buy_count = this.buy_count - 1
+            }
+          },
+          zhifu () {
+            go("/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count, this.$router)
+            //this.$router.push({path: "/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count});
+          },
         },
         components: {
-          swiper,
-          swiperSlide
         },
 				computed: {
-					swiper() {
-						return this.$refs.mySwiper.swiper
-					}
 				}
     }
 </script>
