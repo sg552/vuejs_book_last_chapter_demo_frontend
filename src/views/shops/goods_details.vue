@@ -1,6 +1,6 @@
 <template>
   <div class="background">
-    <div class="goods_detail">
+    <div class="goods_detail" style="height: 100%;">
       <header class="top_bar">
         <a onclick="window.history.go(-1)" class="icon_back"></a>
         <h3 class="cartname">商品详情</h3>
