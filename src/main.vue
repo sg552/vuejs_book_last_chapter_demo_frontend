@@ -19,7 +19,9 @@ export default {
   },
   mounted () {
     console.log('main.vue created')
-    //store.dispatch(SET_BASEINFO, {open_id: 'opFELv6YkJkMaH-xFkokTWCs5AlQ'})
+
+    // TODO 开发环境下使用，　生产环境下注释掉
+//    store.dispatch(SET_BASEINFO, {open_id: 'opFELv6YkJkMaH-xFkokTWCs5AlQ'})
     console.info(this.$route.name)
     if (this.user_info.open_id) {
       store.dispatch(SET_BASEINFO, this.user_info)

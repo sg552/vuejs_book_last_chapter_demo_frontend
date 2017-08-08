@@ -6,6 +6,8 @@ import router from './router'
 import VueResource from 'vue-resource'
 import vueConfig from './vue-config'
 import { currency } from './currency'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
+
 
 Vue.filter('currency', currency)
 
@@ -19,6 +21,8 @@ const configs = {
 }
 
 Vue.use(vueConfig, configs)
+Vue.use(VueAwesomeSwiper)
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

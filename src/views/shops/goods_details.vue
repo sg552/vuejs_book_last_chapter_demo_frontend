@@ -7,7 +7,24 @@
       </header>
       <div class="tast_list_bd" style="padding-top: 44px;">
         <main class="detail_box">
-        <section class="banner_box">
+
+        <!-- 轮播图 -->
+			<swiper :options="swiperOption" ref="mySwiper">
+				<!-- slides -->
+				<swiper-slide v-for="image in good_images"
+          v-bind:style="{backgroundImage: 'url(' + image + ')'}"
+          style='width:100%; height: 270px;
+          background-position: center center;
+          background-size: cover;
+          '
+          >
+        </swiper-slide>
+				<!-- Optional controls -->
+				<div class="swiper-pagination"  slot="pagination"></div>
+				<div class="swiper-scrollbar"   slot="scrollbar"></div>
+			</swiper>
+        <!--
+        <section class="banner_box" id="my_banner">
           <ul class="banner_child_box">
             <li class="banner_item">
               <img  v-for="image in good_images" :src="image" alt="" class="banner_pic">
@@ -20,6 +37,7 @@
             <em id="slide-sum" class="fz12">5</em>
           </div>
         </section>
+        -->
 
         <section class="product_info clearfix">
           <div class="product_left">
@@ -28,10 +46,19 @@
               <span>￥</span>
               <span class="rel_price">{{good.price}}</span>
               <span></span>
+
+              <span style='    color: grey;
+              text-decoration: line-through;
+              font-size: 18px;
+              margin-left: 14px;' v-if="good.id == 7 ">
+              原价：￥148.00
+              </span>
             </div>
+            <!--
             <div class="product_right">
               降价通知
             </div>
+            -->
           </div>
         </section>
 
@@ -46,9 +73,8 @@
         </div>
 
         <section class="product_intro">
-          <p class="pro_det">
-          {{good.description}}
-          </p>
+          <div class="pro_det" v-html="good.description" style='padding: 0 6.5px;'>
+          </div>
         </section>
         </main>
       </div>
@@ -75,23 +101,52 @@
 </template>
 <script>
 import { go } from '../../libs/router'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+
    export default{
         data(){
             return {
                 good_images: [],
                 good: "",
                 buy_count: 1,
-                good_id: this.$route.query.good_id
+                good_id: this.$route.query.good_id,
+								swiperOption: {
+									notNextTick: true,
+									autoplay: 1000,
+									direction : 'horizontal',
+									autoHeight: true,
+									pagination : '.swiper-pagination',
+									paginationClickable :true,
+									scrollbar:'.swiper-scrollbar',
+									observeParents:true,
+									// if you need use plugins in the swiper, you can config in here like this
+									// 如果自行设计了插件，那么插件的一些配置相关参数，也应该出现在这个对象中，如下debugger
+									debugger: true,
+									// swiper callbacks
+									// swiper的各种回调函数也可以出现在这个对象中，和swiper官方一样
+									onTransitionStart(swiper){
+										console.log(swiper)
+									},
+                  loop: true,
+                  autoplay: 2500,
+									// more Swiper configs and callbacks...
+									// ...
+								}
             }
         },
         watch:{
         },
         mounted(){
+
            this.$http.get(this.$configs.api + 'goods/goods_details?good_id=' + this.good_id).then((response)=>{
              console.info(this.good_id)
              console.info(response.body)
              this.good = response.body.good
              this.good_images = response.body.good_images
+
+						 // 初始化轮播图
+             this.swiper.slideTo(1, 1000, false)
+             this.swiper.startAutoplay()
            },(error) => {
              console.error(error)
            });
@@ -99,6 +154,7 @@ import { go } from '../../libs/router'
         methods:{
             addToCart () {
               console.info('加入购物车')
+              alert("商品已经加入到了购物车")
               let goods = {
                 id: this.good_id,
                 title: this.good.name,
@@ -123,7 +179,16 @@ import { go } from '../../libs/router'
               go("/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count, this.$router)
               //this.$router.push({path: "/shops/dingdanzhifu?good_id=" + this.good_id + "&buy_count=" + this.buy_count});
             },
-        }
+        },
+        components: {
+          swiper,
+          swiperSlide
+        },
+				computed: {
+					swiper() {
+						return this.$refs.mySwiper.swiper
+					}
+				}
     }
 </script>
 
@@ -132,5 +197,8 @@ import { go } from '../../libs/router'
 .background {
   margin-bottom: 30px;
 }
-
+/* 不好使? */
+.swiper-pagination-bullet-active{
+  background: red !important;
+}
 </style>

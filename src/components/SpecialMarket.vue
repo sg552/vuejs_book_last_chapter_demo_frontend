@@ -7,7 +7,7 @@
           {{name}}
         </div>
         <div class="logo_and_shop_name">
-          <span> {{description}}</span>
+          <span v-html="description"></span>
         </div>
       </div>
     </div>
