@@ -39,7 +39,7 @@
 	}
 </script>
 
-<style>
+<style scoped>
 @import '../assets/css/detail.css';
 @import '../assets/css/mine.css';
 

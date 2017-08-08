@@ -41,7 +41,15 @@
     </div>
   </div>
 </template>
-<style>
+
+<style scoped>
+.subtitle:not(:last-child), .title:not(:last-child) {
+  margin-bottom: 0px;
+}
+.title {
+  font-size: 14px;
+  margin: 0;
+}
 .detail {
   float: right;
   margin-right: 28px;

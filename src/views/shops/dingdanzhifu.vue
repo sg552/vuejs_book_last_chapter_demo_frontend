@@ -336,7 +336,7 @@
 <style scoped>
 @import '../../assets/css/detail.css';
 @import '../../assets/css/index.css';
-@import '../../assets/css/bundle.css';
+@import '../../assets/css/validate.css';
 
 .background {
 }

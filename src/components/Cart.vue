@@ -38,7 +38,7 @@
   </div>
 </template>
 
-<style>
+<style scoped>
 @import '../assets/css/cart.css';
 </style>
 

@@ -34,6 +34,39 @@
   </div>
 </template>
 
+<style scoped>
+.subtitle:not(:last-child), .title:not(:last-child) {
+  margin-bottom: 0px;
+}
+.title {
+  font-size: 14px;
+  margin: 0;
+}
+.detail {
+  float: right;
+  margin-right: 28px;
+}
+.order_message {
+  height: 30px;
+  line-height: 30px;
+}
+span.title {
+  line-height: 30px;
+  float: left;
+  margin-left: 28px;
+}
+.info.status_image_and_word {
+  padding-top: 49px;
+}
+.info.status_image_and_word img{
+  position: relative;
+  width: 87px!important;
+}
+.info.status_image_and_word .word {
+  font-size: 16px;
+}
+</style>
+
 <script>
 import { go } from '../../libs/router'
 
