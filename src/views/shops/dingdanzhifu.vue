@@ -9,25 +9,54 @@
       <div class="goods_detail" style="">
 
         <main class="detail_box">
+				<!--
         <section class="banner_box">
           <div style="margin-top: 45px">
             <div class="extra_cost">
               <span style="float: left; margin-left: 15px;"> 收货地址:</span>
-              <input v-model="mobile_user_address"  type="text" name="cost" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201" style="border: 0; background-color: white;
-              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+              <input class="mobile_user_info" v-model="mobile_user_address"  type="text" name="cost" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201" style=""></input>
             </div>
             <div class="extra_cost" style=" ">
               <span style="float: left; margin-left: 31px;"> 收货人:</span>
-              <input v-model="mobile_user_name" type="text" name="cost" placeholder="例如: 张三" style="border: 0; background-color: white;
-              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+              <input class="mobile_user_info" name="name" v-model="mobile_user_name" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text"  placeholder="例如: 张三" style=""></input>
+              <p v-show="errors.has('name')" class="help is-danger">收货人不能为空</p>
             </div>
             <div class="extra_cost" style=" ">
               <span style="float: left; margin-left: 48px;"> 电话:</span>
-              <input v-model="mobile_user_phone" type="text" name="cost" placeholder="例如: 18588888888" style="border: 0; background-color: white;
-              font-size: 15px; color: #48484b; outline: none; width: 60%;"></input>
+              <input class="mobile_user_info" v-model="mobile_user_phone" type="text" name="cost" placeholder="例如: 18588888888"
+              style=""></input>
             </div>
           </div>
         </section>
+				-->
+
+        <span class="divider"></span>
+
+				<form style="margin-top: 45px;">
+					<div class="column is-12">
+						<label class="label">收货人</label>
+						<p class="control has-icon has-icon-right">
+						<input name="name" v-model="mobile_user_name" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('name') }" type="text" placeholder="例如: 张三" autofocus="autofocus"/>
+						<span v-show="errors.has('name')" class="help is-danger">收货人不能为空</span>
+						</p>
+					</div>
+
+					<div class="column is-12">
+						<label class="label">收货地址</label>
+						<p class="control has-icon has-icon-right">
+						<input name="url" v-model="mobile_user_address" v-validate="'required|required'" :class="{'input': true, 'is-danger': errors.has('url') }" type="text" placeholder="例如: 北京市朝阳区大望路西西里小区4栋2单元201"/>
+						<span v-show="errors.has('url')" class="help is-danger">收货地址不能为空</span>
+						</p>
+					</div>
+
+					<div class="column is-12">
+						<label class="label">收货电话</label>
+						<p class="control has-icon has-icon-right">
+						<input name="phone" v-model="mobile_user_phone" v-validate="'required|numeric'" :class="{'input': true, 'is-danger': errors.has('phone') }" type="text" placeholder="例如: 18888888888"/>
+						<span v-show="errors.has('phone')" class="help is-danger">电话号码不能为空</span>
+						</p>
+					</div>
+				</form>
 
         <span class="divider"></span>
 
@@ -134,7 +163,7 @@
                 mobile_user_name: '',
                 mobile_user_phone: '',
                 guest_remarks: '',
-                is_use_wechat: false
+                is_use_wechat: false,
             }
         },
         watch:{
@@ -169,6 +198,23 @@
             })
         },
         methods:{
+						validateBeforeSubmit() {
+						  //拦截异步操作
+						  return new Promise((resolve, reject) => {
+								this.$validator.validateAll().then(result => {
+									console.info(result)
+									if (result) {
+										// eslint-disable-next-line
+										alert('等待支付');
+										console.info("============表单验证成功===")
+										resolve(true);
+									} else {
+									alert('请填写完整的收货信息!');
+									  resolve(false);
+									}
+								});
+							})
+						},
             plus () {
               this.buy_count = this.buy_count + 1
             },
@@ -185,41 +231,48 @@
               }
             },
             buy (){
-              let params
-              if (this.single_pay) {
-                params = {
-                  good_id: this.good_id,
-                  buy_count: this.buy_count,
-                  total_cost: this.total_cost,
-                  guest_remarks: this.guest_remarks,
-                  mobile_user_address: this.mobile_user_address,
-                  mobile_user_name: this.mobile_user_name,
-                  mobile_user_phone: this.mobile_user_phone,
-                  open_id: this.open_id
-                }
-              } else {
-                console.info(this.total)
-                params = {
-                  goods: this.cartProducts,
-                  total_cost: this.total,
-                  guest_remarks: this.guest_remarks,
-                  mobile_user_address: this.mobile_user_address,
-                  mobile_user_name: this.mobile_user_name,
-                  mobile_user_phone: this.mobile_user_phone,
-                  open_id: this.open_id
-                }
-              }
-              this.$http.post(this.$configs.api + 'goods/buy',
-                params
-              ).then((response) => {
-                console.info("============点击了立即支付===")
-                console.info(response.body.order_number)
-                let order_number =  response.body.order_number
-                this.purchase(order_number)
-              }, (error) => {
-                console.error(error)
-              });
-            },
+							let result = this.validateBeforeSubmit().then((resolve)=>{
+								if (resolve) {
+									console.info('true ==== ')
+									let params
+									if (this.single_pay) {
+										params = {
+											good_id: this.good_id,
+											buy_count: this.buy_count,
+											total_cost: this.total_cost,
+											guest_remarks: this.guest_remarks,
+											mobile_user_address: this.mobile_user_address,
+											mobile_user_name: this.mobile_user_name,
+											mobile_user_phone: this.mobile_user_phone,
+											open_id: this.open_id
+										}
+									} else {
+										console.info(this.total)
+										params = {
+											goods: this.cartProducts,
+											total_cost: this.total,
+											guest_remarks: this.guest_remarks,
+											mobile_user_address: this.mobile_user_address,
+											mobile_user_name: this.mobile_user_name,
+											mobile_user_phone: this.mobile_user_phone,
+											open_id: this.open_id
+										}
+									}
+									this.$http.post(this.$configs.api + 'goods/buy',
+									params
+									).then((response) => {
+										console.info("============点击了立即支付===")
+										console.info(response.body.order_number)
+										let order_number =  response.body.order_number
+										this.purchase(order_number)
+									}, (error) => {
+										console.error(error)
+									});
+								} else {
+									console.info('false ==== 请填写收货信息')
+								}
+							});
+						},
             purchase (order_number) {
               //调起微信支付界面
               if (typeof WeixinJSBridge == "undefined"){
@@ -275,7 +328,7 @@
                 console.error(error)
                 //alert(error)
               });
-            },
+            }
           },
     }
 </script>
@@ -283,6 +336,8 @@
 <style scoped>
 @import '../../assets/css/detail.css';
 @import '../../assets/css/index.css';
+@import '../../assets/css/bundle.css';
+
 .background {
 }
 
@@ -320,6 +375,7 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+
 .fu_li_zhuan_qu .content .title {
   overflow: hidden;
   height: 40px;
@@ -333,6 +389,7 @@
   height: 34px;
   margin-top: 5px;
 }
+
 .details {
   outline:none;
   border:0;
@@ -352,6 +409,7 @@
   @include px2rem(padding-right, 15px);
   color: black;
 }
+
 .extra_cost {
   background-color: #fff;
   display: block;
@@ -360,7 +418,25 @@
   font-size: 18px;
   line-height: 40px;
 }
+
 .extra_cost span {
   font-size: 15px;
+}
+
+.mobile_user_info {
+  border: 0;
+  background-color: white;
+  font-size: 15px;
+  color: #48484b;
+  outline: none;
+  width: 60%;
+}
+
+.column {
+	padding: 5px 10px;
+}
+
+.label {
+	text-align: left;
 }
 </style>

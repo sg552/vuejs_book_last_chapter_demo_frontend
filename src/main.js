@@ -7,6 +7,7 @@ import VueResource from 'vue-resource'
 import vueConfig from './vue-config'
 import { currency } from './currency'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import VeeValidate from 'vee-validate'
 
 
 Vue.filter('currency', currency)
@@ -22,6 +23,7 @@ const configs = {
 
 Vue.use(vueConfig, configs)
 Vue.use(VueAwesomeSwiper)
+Vue.use(VeeValidate)
 
 /* eslint-disable no-new */
 new Vue({

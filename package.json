@@ -18,6 +18,7 @@
     "node-sass": "^4.5.3",
     "object-assign": "^4.1.1",
     "sass-loader": "^6.0.5",
+    "vee-validate": "^2.0.0-rc.9",
     "vue": "^2.2.6",
     "vue-awesome-swiper": "^2.5.4",
     "vue-concise-slider": "^2.1.3",
