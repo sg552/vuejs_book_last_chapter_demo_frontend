@@ -73,7 +73,7 @@
   width: 25px;
   height: 25px;
   margin: 0 auto;
-  margin-top: 6px;
+  margin-top: 4px;
 }
 .tabbar-text {
   margin-top: -4px;

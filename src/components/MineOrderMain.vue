@@ -27,9 +27,9 @@
           <img src="../assets/images/mypackage.png" alt="">
           <span style="margin-left: 0; font-size: 16px;">合计:</span>
         </div>
-        <div class="order_right" style="font-size: 20px; font-weight: 600;">
+        <div class="order_right" style="font-size: 20px;">
           <span style="color: #ff621a;">￥</span>
-          <span style="color: #ff621a;">{{total_cost}}</span>
+          <span style="color: #ff621a; font-weight: 600;">{{total_cost}}</span>
         </div>
       </div>
     </section>
