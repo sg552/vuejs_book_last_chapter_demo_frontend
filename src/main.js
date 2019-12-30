@@ -17,8 +17,9 @@ Vue.use(VueResource)
 Vue.http.options.emulateJSON = true;
 
 const configs = {
-  api: 'http://ptbweb.siwei.me/interface/'
-  //api: 'http://localhost:3000/interface/'
+  // 这个是 远程接口的前缀。
+  // 完整的接口地址形如： http://shopweb.sweetysoft.com/interface/goods/get_goods
+  api: 'http://shopweb.sweetysoft.com/interface/'
 }
 
 Vue.use(vueConfig, configs)
